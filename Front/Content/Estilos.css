@@ -1,0 +1,151 @@
+﻿*{
+    margin:0;
+    padding:0;
+}
+
+html, body {
+    font-family: 'Source Sans Pro', "Helvetica", Helvetica, Arial, sans-serif;
+}
+.box-body#columna1 {
+    padding: 20px;
+    background-color: lightgray;
+    border-top-style: solid;
+    border-top-color: lightgreen;
+    border-top-width: 4px;
+}
+.box-body#columna2 {
+    height:488px;
+    padding: 20px;
+    background-color: lightgray;
+    border-top-style:solid;
+    border-top-color:lightgreen;
+    border-top-width:4px;
+}
+.form-control{
+    max-width:initial;
+    
+}
+.box-body#columnaLogin {
+    padding: 20px;
+    margin-top: 50px;
+    background-color: lightgray;
+    border-top-style: solid;
+    border-top-color: lightgreen;
+    border-top-width: 4px;
+}
+#btn{
+    margin: 10px;
+}
+.col-md-3 {
+    padding: 20px;
+    background-color: lightgray;
+}
+
+#miCuenta{
+    margin-top:5%;
+    width:auto;
+    height:45em;
+    background-color:lightgrey;
+}
+
+.cajaDetalleServicio{
+    margin-top: 5%;
+    width: auto;
+    height: 45em;
+    background-color: lightgrey;
+}
+
+.misServicios{
+    padding:20px;
+    margin:10px;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
+}
+
+.divDetalleServicio {
+    padding: 40px;
+    position:absolute; 
+    left:470px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+#tipoServicio {
+    position: absolute;
+    top:-20px;
+    left: 535px;
+}
+
+#sampleText {
+    position:absolute;
+    top: 130px;
+    left: 335px;
+    text-align:center;
+    font-style:italic;
+    width:300px;
+}
+
+.btn-Reservar {
+    position: absolute;
+    top: 220px;
+    left: 515px;
+}
+
+.estiloReserva {
+    position: absolute;
+    left: 705px;
+}
+
+.columnaReserva1 {
+    padding: 20px;
+    margin: 5px;
+    background-color: lightgray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #7e9c7e;
+    width: 15em;
+    position: absolute;
+    left: -70px;
+}
+.columnaReserva2 {
+    padding: 20px;
+    padding-bottom:11px;
+    margin: 5px;
+    width:15em;
+    line-height:0px;
+    background-color: lightgray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #7e9c7e;
+    position:absolute;
+    
+}
+
+#disponibilidad{
+    width:5em;
+    position:absolute;
+    top:550px;
+    right:595px;
+}
+#labelTotal {
+    position: absolute;
+    top: 450px;
+    left: 270px;
+    text-decoration: underline
+}
+
+.btnConfirmarReserva {
+    position: absolute;
+    top: 415px;
+    left: 260px;
+}
+#detallesReserva {
+    position: absolute;
+    top: 285px;
+    right: 1px;
+    text-align: center;
+    font-style: italic;
+    width: 300px;
+}
+
