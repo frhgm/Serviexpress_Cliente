@@ -110,6 +110,7 @@
     <Content Include="Content\AdminLTE.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Default.aspx" />
     <Content Include="detalleServicios.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Content\Estilos.css" />
@@ -128,6 +129,7 @@
     <Content Include="Registro.aspx" />
     <Content Include="ReservaExitosa.aspx" />
     <Content Include="ReservarHora.aspx" />
+    <Content Include="script.js" />
     <Content Include="Scripts\adminlte.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -179,6 +181,15 @@
     </Compile>
     <Compile Include="Contacto.aspx.designer.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\CustomMembershipProvider.cs" />
+    <Compile Include="Custom\SessionManager.cs" />
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="detalleServicios.aspx.cs">
       <DependentUpon>detalleServicios.aspx</DependentUpon>
@@ -275,6 +286,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
+      <Project>{60412DED-D446-42A6-887F-3D9A0D5106CE}</Project>
+      <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaLogicaNegocio\CapaLogicaNegocio.csproj">
+      <Project>{717F1549-F0CA-4EA1-B3BB-D6B31A66F64C}</Project>
+      <Name>CapaLogicaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

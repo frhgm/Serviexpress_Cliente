@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>a842577a-e53e-44a8-8549-cbb3cb6358dd</ProjectGuid>
+    <ProjectGuid>{A842577A-E53E-44A8-8549-CBB3CB6358DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CapaAccesoDatos</RootNamespace>
@@ -31,24 +31,142 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="almacen.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="boleta.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cliente.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClienteDAO.cs" />
+    <Compile Include="Conexion.cs" />
+    <Compile Include="detalle_pago.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_pedido.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detalle_permiso.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dia_habil.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="empleado.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoDAO.cs" />
+    <Compile Include="familia_producto.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="horario.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="marca_producto.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modulo.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pedido_cabecera.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="producto.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="producto_almacen.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="proveedor.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reserva.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rol.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="servicio.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taller.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Taller.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taller.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taller.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Taller.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tipo_boleta.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usuario.cs">
+      <DependentUpon>Taller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioDAO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
+      <Project>{60412DED-D446-42A6-887F-3D9A0D5106CE}</Project>
+      <Name>CapaEntidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Taller.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Taller.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Taller.edmx.diagram">
+      <DependentUpon>Taller.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Taller.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Taller.Context.cs</LastGenOutput>
+      <DependentUpon>Taller.edmx</DependentUpon>
+    </Content>
+    <Content Include="Taller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Taller.edmx</DependentUpon>
+      <LastGenOutput>Taller.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

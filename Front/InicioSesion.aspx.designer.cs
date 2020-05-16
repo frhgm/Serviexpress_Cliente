@@ -7,20 +7,39 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Front
-{
-
-
-    public partial class InicioSesion
-    {
-
+namespace Front {
+    
+    
+    public partial class InicioSesion {
+        
         /// <summary>
-        /// btnLogin control.
+        /// mensajeLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.Label mensajeLogin;
+        
+        /// <summary>
+        /// LoginUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Login LoginUser;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Front.SiteMaster Master {
+            get {
+                return ((Front.SiteMaster)(base.Master));
+            }
+        }
     }
 }
