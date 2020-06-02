@@ -1,0 +1,1591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SERVIEXPRESSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="almacen">
+          <Key>
+            <PropertyRef Name="id_almacén" />
+          </Key>
+          <Property Name="id_almacén" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="boleta">
+          <Key>
+            <PropertyRef Name="n_boleta" />
+          </Key>
+          <Property Name="n_boleta" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="fecha_emision" Type="date" Nullable="false" />
+          <Property Name="nombre_cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="direccion_empresa" Type="varchar" MaxLength="60" />
+          <Property Name="rut_empresa" Type="varchar" MaxLength="1" />
+          <Property Name="precio_total" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="servicios_cod_servicio" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="tipo_boleta_id_tipo_boleta" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="rut_cliente" />
+          </Key>
+          <Property Name="rut_cliente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre_cliente" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido_cliente" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="telefono" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="telefono_adicional" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_pago">
+          <Key>
+            <PropertyRef Name="id_detalle_pago" />
+          </Key>
+          <Property Name="id_detalle_pago" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="boleta_n_boleta" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="cantidad" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="precio_unitario" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="producto_almacen_id_producto_almacen" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id_detalle_pedido" />
+          </Key>
+          <Property Name="id_detalle_pedido" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="cantidad" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="valor_compra" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="iva" Type="bigint" Nullable="false" />
+          <Property Name="total" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="pedido_cabecera_id_pedido" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="producto_cod_prod" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_permiso">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="seccion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="permiso" Type="bit" Nullable="false" />
+          <Property Name="modulo_id_modulo" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="rol_cod_rol" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dia_habil">
+          <Key>
+            <PropertyRef Name="cod_dia" />
+          </Key>
+          <Property Name="cod_dia" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="nombre_dia" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="rut_empleado" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre_empleado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido_empleado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="telefono" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="telefono_adicional" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="usuario_id_usuario" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="familia_producto">
+          <Key>
+            <PropertyRef Name="id_familia" />
+          </Key>
+          <Property Name="id_familia" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="id_horario" />
+          </Key>
+          <Property Name="id_horario" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="dia_habil_cod_dia" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="hora" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="disponibilidad" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="marca_producto">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="id_modulo" />
+          </Key>
+          <Property Name="id_modulo" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="prioridad" Type="varchar" MaxLength="20" />
+          <Property Name="icono" Type="image" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="pedido_cabecera">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fecha_emision" Type="date" Nullable="false" />
+          <Property Name="fecha_recepcion" Type="date" />
+          <Property Name="total" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="proveedor_id_proveedor" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="cod_prod" />
+          </Key>
+          <Property Name="cod_prod" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="precio_unitario" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="familia_producto_id_familia" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="proveedor_id_proveedor" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="marca_producto_id_marca" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="producto_almacen">
+          <Key>
+            <PropertyRef Name="id_producto_almacen" />
+          </Key>
+          <Property Name="id_producto_almacen" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="producto_cod_prod" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="almacen_id_almacén" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stock" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="n_contacto" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="rut_proveedor" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="telefono_proveedor" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="n_reserva" />
+          </Key>
+          <Property Name="n_reserva" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="patente" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="anno_vehiculo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcion_vehiculo" Type="varchar" MaxLength="100" />
+          <Property Name="cliente_rut_cliente" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="servicios_cod_servicio" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="horario_id_horario" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="cod_servicio" />
+          </Key>
+          <Property Name="cod_servicio" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tarifa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_boleta">
+          <Key>
+            <PropertyRef Name="id_tipo_boleta" />
+          </Key>
+          <Property Name="id_tipo_boleta" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="rol_cod_rol" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="boleta_servicios_fk">
+          <End Role="servicios" Type="Self.servicios" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="cod_servicio" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="servicios_cod_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="boleta_tipo_boleta_fk">
+          <End Role="tipo_boleta" Type="Self.tipo_boleta" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_boleta">
+              <PropertyRef Name="id_tipo_boleta" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="tipo_boleta_id_tipo_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pago_boleta_fk">
+          <End Role="boleta" Type="Self.boleta" Multiplicity="1" />
+          <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="boleta">
+              <PropertyRef Name="n_boleta" />
+            </Principal>
+            <Dependent Role="detalle_pago">
+              <PropertyRef Name="boleta_n_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pago_producto_almacen_fk">
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="1" />
+          <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto_almacen">
+              <PropertyRef Name="id_producto_almacen" />
+            </Principal>
+            <Dependent Role="detalle_pago">
+              <PropertyRef Name="producto_almacen_id_producto_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pedido_pedido_cabecera_fk">
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido_cabecera">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="pedido_cabecera_id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pedido_producto_fk">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="cod_prod" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="producto_cod_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_permiso_modulo_fk">
+          <End Role="modulo" Type="Self.modulo" Multiplicity="1" />
+          <End Role="detalle_permiso" Type="Self.detalle_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="id_modulo" />
+            </Principal>
+            <Dependent Role="detalle_permiso">
+              <PropertyRef Name="modulo_id_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_permiso_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="detalle_permiso" Type="Self.detalle_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="detalle_permiso">
+              <PropertyRef Name="rol_cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="empleado_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horario_dia_habil_fk">
+          <End Role="dia_habil" Type="Self.dia_habil" Multiplicity="1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dia_habil">
+              <PropertyRef Name="cod_dia" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="dia_habil_cod_dia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horario_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_cabecera_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="pedido_cabecera">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_cabecera_proveedor_fk">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="pedido_cabecera">
+              <PropertyRef Name="proveedor_id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_almacen_almacen_fk">
+          <End Role="almacen" Type="Self.almacen" Multiplicity="1" />
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="almacen">
+              <PropertyRef Name="id_almacén" />
+            </Principal>
+            <Dependent Role="producto_almacen">
+              <PropertyRef Name="almacen_id_almacén" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_almacen_producto_fk">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="cod_prod" />
+            </Principal>
+            <Dependent Role="producto_almacen">
+              <PropertyRef Name="producto_cod_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_familia_producto_fk">
+          <End Role="familia_producto" Type="Self.familia_producto" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="familia_producto">
+              <PropertyRef Name="id_familia" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="familia_producto_id_familia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_marca_producto_fk">
+          <End Role="marca_producto" Type="Self.marca_producto" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca_producto">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="marca_producto_id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_proveedor_fk">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="proveedor_id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_cliente_fk">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="rut_cliente" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="cliente_rut_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_horario_fk">
+          <End Role="horario" Type="Self.horario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id_horario" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="horario_id_horario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_servicios_fk">
+          <End Role="servicios" Type="Self.servicios" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="cod_servicio" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="servicios_cod_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rol_cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SERVIEXPRESSModelStoreContainer">
+          <EntitySet Name="almacen" EntityType="Self.almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="boleta" EntityType="Self.boleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_pago" EntityType="Self.detalle_pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_permiso" EntityType="Self.detalle_permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dia_habil" EntityType="Self.dia_habil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="familia_producto" EntityType="Self.familia_producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="horario" EntityType="Self.horario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="marca_producto" EntityType="Self.marca_producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modulo" EntityType="Self.modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedido_cabecera" EntityType="Self.pedido_cabecera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto_almacen" EntityType="Self.producto_almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_boleta" EntityType="Self.tipo_boleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="boleta_servicios_fk" Association="Self.boleta_servicios_fk">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="boleta_tipo_boleta_fk" Association="Self.boleta_tipo_boleta_fk">
+            <End Role="tipo_boleta" EntitySet="tipo_boleta" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="cliente_usuario_fk" Association="Self.cliente_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pago_boleta_fk" Association="Self.detalle_pago_boleta_fk">
+            <End Role="boleta" EntitySet="boleta" />
+            <End Role="detalle_pago" EntitySet="detalle_pago" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pago_producto_almacen_fk" Association="Self.detalle_pago_producto_almacen_fk">
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+            <End Role="detalle_pago" EntitySet="detalle_pago" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pedido_pedido_cabecera_fk" Association="Self.detalle_pedido_pedido_cabecera_fk">
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pedido_producto_fk" Association="Self.detalle_pedido_producto_fk">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_permiso_modulo_fk" Association="Self.detalle_permiso_modulo_fk">
+            <End Role="modulo" EntitySet="modulo" />
+            <End Role="detalle_permiso" EntitySet="detalle_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_permiso_rol_fk" Association="Self.detalle_permiso_rol_fk">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="detalle_permiso" EntitySet="detalle_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="empleado_usuario_fk" Association="Self.empleado_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="horario_dia_habil_fk" Association="Self.horario_dia_habil_fk">
+            <End Role="dia_habil" EntitySet="dia_habil" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="horario_empleado_fk" Association="Self.horario_empleado_fk">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_cabecera_empleado_fk" Association="Self.pedido_cabecera_empleado_fk">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_cabecera_proveedor_fk" Association="Self.pedido_cabecera_proveedor_fk">
+            <End Role="proveedor" EntitySet="proveedor" />
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+          </AssociationSet>
+          <AssociationSet Name="producto_almacen_almacen_fk" Association="Self.producto_almacen_almacen_fk">
+            <End Role="almacen" EntitySet="almacen" />
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+          </AssociationSet>
+          <AssociationSet Name="producto_almacen_producto_fk" Association="Self.producto_almacen_producto_fk">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+          </AssociationSet>
+          <AssociationSet Name="producto_familia_producto_fk" Association="Self.producto_familia_producto_fk">
+            <End Role="familia_producto" EntitySet="familia_producto" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="producto_marca_producto_fk" Association="Self.producto_marca_producto_fk">
+            <End Role="marca_producto" EntitySet="marca_producto" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="producto_proveedor_fk" Association="Self.producto_proveedor_fk">
+            <End Role="proveedor" EntitySet="proveedor" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_cliente_fk" Association="Self.reserva_cliente_fk">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_empleado_fk" Association="Self.reserva_empleado_fk">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_horario_fk" Association="Self.reserva_horario_fk">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_servicios_fk" Association="Self.reserva_servicios_fk">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_rol_fk" Association="Self.usuario_rol_fk">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SERVIEXPRESSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="almacen">
+          <Key>
+            <PropertyRef Name="id_almacén" />
+          </Key>
+          <Property Name="id_almacén" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="producto_almacen" Relationship="Self.producto_almacen_almacen_fk" FromRole="almacen" ToRole="producto_almacen" />
+        </EntityType>
+        <EntityType Name="boleta">
+          <Key>
+            <PropertyRef Name="n_boleta" />
+          </Key>
+          <Property Name="n_boleta" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="fecha_emision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion_empresa" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="rut_empresa" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="precio_total" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="servicios_cod_servicio" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="tipo_boleta_id_tipo_boleta" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="servicio" Relationship="Self.boleta_servicios_fk" FromRole="boleta" ToRole="servicios" />
+          <NavigationProperty Name="tipo_boleta" Relationship="Self.boleta_tipo_boleta_fk" FromRole="boleta" ToRole="tipo_boleta" />
+          <NavigationProperty Name="detalle_pago" Relationship="Self.detalle_pago_boleta_fk" FromRole="boleta" ToRole="detalle_pago" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="rut_cliente" />
+          </Key>
+          <Property Name="rut_cliente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="telefono_adicional" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_id_usuario" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.cliente_usuario_fk" FromRole="cliente" ToRole="usuario" />
+          <NavigationProperty Name="reservas" Relationship="Self.reserva_cliente_fk" FromRole="cliente" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="detalle_pago">
+          <Key>
+            <PropertyRef Name="id_detalle_pago" />
+          </Key>
+          <Property Name="id_detalle_pago" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="boleta_n_boleta" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="precio_unitario" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="producto_almacen_id_producto_almacen" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="boleta" Relationship="Self.detalle_pago_boleta_fk" FromRole="detalle_pago" ToRole="boleta" />
+          <NavigationProperty Name="producto_almacen" Relationship="Self.detalle_pago_producto_almacen_fk" FromRole="detalle_pago" ToRole="producto_almacen" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id_detalle_pedido" />
+          </Key>
+          <Property Name="id_detalle_pedido" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="valor_compra" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="iva" Type="Int64" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pedido_cabecera_id_pedido" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="producto_cod_prod" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <NavigationProperty Name="pedido_cabecera" Relationship="Self.detalle_pedido_pedido_cabecera_fk" FromRole="detalle_pedido" ToRole="pedido_cabecera" />
+          <NavigationProperty Name="producto" Relationship="Self.detalle_pedido_producto_fk" FromRole="detalle_pedido" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="detalle_permiso">
+          <Key>
+            <PropertyRef Name="id_detalle" />
+          </Key>
+          <Property Name="id_detalle" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="seccion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="permiso" Type="Boolean" Nullable="false" />
+          <Property Name="modulo_id_modulo" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="rol_cod_rol" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="modulo" Relationship="Self.detalle_permiso_modulo_fk" FromRole="detalle_permiso" ToRole="modulo" />
+          <NavigationProperty Name="rol" Relationship="Self.detalle_permiso_rol_fk" FromRole="detalle_permiso" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="dia_habil">
+          <Key>
+            <PropertyRef Name="cod_dia" />
+          </Key>
+          <Property Name="cod_dia" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="nombre_dia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="horarios" Relationship="Self.horario_dia_habil_fk" FromRole="dia_habil" ToRole="horario" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="rut_empleado" />
+          </Key>
+          <Property Name="rut_empleado" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_empleado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="telefono_adicional" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_id_usuario" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.empleado_usuario_fk" FromRole="empleado" ToRole="usuario" />
+          <NavigationProperty Name="horarios" Relationship="Self.horario_empleado_fk" FromRole="empleado" ToRole="horario" />
+          <NavigationProperty Name="pedido_cabecera" Relationship="Self.pedido_cabecera_empleado_fk" FromRole="empleado" ToRole="pedido_cabecera" />
+          <NavigationProperty Name="reservas" Relationship="Self.reserva_empleado_fk" FromRole="empleado" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="familia_producto">
+          <Key>
+            <PropertyRef Name="id_familia" />
+          </Key>
+          <Property Name="id_familia" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="productoes" Relationship="Self.producto_familia_producto_fk" FromRole="familia_producto" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="id_horario" />
+          </Key>
+          <Property Name="id_horario" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="dia_habil_cod_dia" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="hora" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="disponibilidad" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="dia_habil" Relationship="Self.horario_dia_habil_fk" FromRole="horario" ToRole="dia_habil" />
+          <NavigationProperty Name="empleado" Relationship="Self.horario_empleado_fk" FromRole="horario" ToRole="empleado" />
+          <NavigationProperty Name="reservas" Relationship="Self.reserva_horario_fk" FromRole="horario" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="marca_producto">
+          <Key>
+            <PropertyRef Name="id_marca" />
+          </Key>
+          <Property Name="id_marca" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="productoes" Relationship="Self.producto_marca_producto_fk" FromRole="marca_producto" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="modulo">
+          <Key>
+            <PropertyRef Name="id_modulo" />
+          </Key>
+          <Property Name="id_modulo" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prioridad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="icono" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="detalle_permiso" Relationship="Self.detalle_permiso_modulo_fk" FromRole="modulo" ToRole="detalle_permiso" />
+        </EntityType>
+        <EntityType Name="pedido_cabecera">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="fecha_emision" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_recepcion" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="proveedor_id_proveedor" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <NavigationProperty Name="detalle_pedido" Relationship="Self.detalle_pedido_pedido_cabecera_fk" FromRole="pedido_cabecera" ToRole="detalle_pedido" />
+          <NavigationProperty Name="empleado" Relationship="Self.pedido_cabecera_empleado_fk" FromRole="pedido_cabecera" ToRole="empleado" />
+          <NavigationProperty Name="proveedor" Relationship="Self.pedido_cabecera_proveedor_fk" FromRole="pedido_cabecera" ToRole="proveedor" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="cod_prod" />
+          </Key>
+          <Property Name="cod_prod" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="precio_unitario" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="familia_producto_id_familia" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="proveedor_id_proveedor" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="marca_producto_id_marca" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="detalle_pedido" Relationship="Self.detalle_pedido_producto_fk" FromRole="producto" ToRole="detalle_pedido" />
+          <NavigationProperty Name="familia_producto" Relationship="Self.producto_familia_producto_fk" FromRole="producto" ToRole="familia_producto" />
+          <NavigationProperty Name="marca_producto" Relationship="Self.producto_marca_producto_fk" FromRole="producto" ToRole="marca_producto" />
+          <NavigationProperty Name="producto_almacen" Relationship="Self.producto_almacen_producto_fk" FromRole="producto" ToRole="producto_almacen" />
+          <NavigationProperty Name="proveedor" Relationship="Self.producto_proveedor_fk" FromRole="producto" ToRole="proveedor" />
+        </EntityType>
+        <EntityType Name="producto_almacen">
+          <Key>
+            <PropertyRef Name="id_producto_almacen" />
+          </Key>
+          <Property Name="id_producto_almacen" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="producto_cod_prod" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="almacen_id_almacén" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stock" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="almacen" Relationship="Self.producto_almacen_almacen_fk" FromRole="producto_almacen" ToRole="almacen" />
+          <NavigationProperty Name="detalle_pago" Relationship="Self.detalle_pago_producto_almacen_fk" FromRole="producto_almacen" ToRole="detalle_pago" />
+          <NavigationProperty Name="producto" Relationship="Self.producto_almacen_producto_fk" FromRole="producto_almacen" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="proveedor">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="n_contacto" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="rut_proveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_proveedor" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="pedido_cabecera" Relationship="Self.pedido_cabecera_proveedor_fk" FromRole="proveedor" ToRole="pedido_cabecera" />
+          <NavigationProperty Name="productoes" Relationship="Self.producto_proveedor_fk" FromRole="proveedor" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="n_reserva" />
+          </Key>
+          <Property Name="n_reserva" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="patente" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="anno_vehiculo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="descripcion_vehiculo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_rut_cliente" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="servicios_cod_servicio" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="empleado_rut_empleado" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="horario_id_horario" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.reserva_cliente_fk" FromRole="reserva" ToRole="cliente" />
+          <NavigationProperty Name="empleado" Relationship="Self.reserva_empleado_fk" FromRole="reserva" ToRole="empleado" />
+          <NavigationProperty Name="horario" Relationship="Self.reserva_horario_fk" FromRole="reserva" ToRole="horario" />
+          <NavigationProperty Name="servicio" Relationship="Self.reserva_servicios_fk" FromRole="reserva" ToRole="servicios" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="cod_rol" />
+          </Key>
+          <Property Name="cod_rol" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="detalle_permiso" Relationship="Self.detalle_permiso_rol_fk" FromRole="rol" ToRole="detalle_permiso" />
+          <NavigationProperty Name="usuarios" Relationship="Self.usuario_rol_fk" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="cod_servicio" />
+          </Key>
+          <Property Name="cod_servicio" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tarifa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="boletas" Relationship="Self.boleta_servicios_fk" FromRole="servicios" ToRole="boleta" />
+          <NavigationProperty Name="reservas" Relationship="Self.reserva_servicios_fk" FromRole="servicios" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="tipo_boleta">
+          <Key>
+            <PropertyRef Name="id_tipo_boleta" />
+          </Key>
+          <Property Name="id_tipo_boleta" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="boletas" Relationship="Self.boleta_tipo_boleta_fk" FromRole="tipo_boleta" ToRole="boleta" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="correo_electronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="rol_cod_rol" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="clientes" Relationship="Self.cliente_usuario_fk" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="empleadoes" Relationship="Self.empleado_usuario_fk" FromRole="usuario" ToRole="empleado" />
+          <NavigationProperty Name="rol" Relationship="Self.usuario_rol_fk" FromRole="usuario" ToRole="rol" />
+        </EntityType>
+        <Association Name="producto_almacen_almacen_fk">
+          <End Role="almacen" Type="Self.almacen" Multiplicity="1" />
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="almacen">
+              <PropertyRef Name="id_almacén" />
+            </Principal>
+            <Dependent Role="producto_almacen">
+              <PropertyRef Name="almacen_id_almacén" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="boleta_servicios_fk">
+          <End Role="servicios" Type="Self.servicio" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="cod_servicio" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="servicios_cod_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="boleta_tipo_boleta_fk">
+          <End Role="tipo_boleta" Type="Self.tipo_boleta" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_boleta">
+              <PropertyRef Name="id_tipo_boleta" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="tipo_boleta_id_tipo_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pago_boleta_fk">
+          <End Role="boleta" Type="Self.boleta" Multiplicity="1" />
+          <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="boleta">
+              <PropertyRef Name="n_boleta" />
+            </Principal>
+            <Dependent Role="detalle_pago">
+              <PropertyRef Name="boleta_n_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_cliente_fk">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="rut_cliente" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="cliente_rut_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pago_producto_almacen_fk">
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="1" />
+          <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto_almacen">
+              <PropertyRef Name="id_producto_almacen" />
+            </Principal>
+            <Dependent Role="detalle_pago">
+              <PropertyRef Name="producto_almacen_id_producto_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pedido_pedido_cabecera_fk">
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido_cabecera">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="pedido_cabecera_id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_pedido_producto_fk">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="cod_prod" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="producto_cod_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_permiso_modulo_fk">
+          <End Role="modulo" Type="Self.modulo" Multiplicity="1" />
+          <End Role="detalle_permiso" Type="Self.detalle_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modulo">
+              <PropertyRef Name="id_modulo" />
+            </Principal>
+            <Dependent Role="detalle_permiso">
+              <PropertyRef Name="modulo_id_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalle_permiso_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="detalle_permiso" Type="Self.detalle_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="detalle_permiso">
+              <PropertyRef Name="rol_cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horario_dia_habil_fk">
+          <End Role="dia_habil" Type="Self.dia_habil" Multiplicity="1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dia_habil">
+              <PropertyRef Name="cod_dia" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="dia_habil_cod_dia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="empleado_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horario_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_cabecera_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="pedido_cabecera">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_empleado_fk">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="rut_empleado" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="empleado_rut_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_familia_producto_fk">
+          <End Role="familia_producto" Type="Self.familia_producto" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="familia_producto">
+              <PropertyRef Name="id_familia" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="familia_producto_id_familia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_horario_fk">
+          <End Role="horario" Type="Self.horario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id_horario" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="horario_id_horario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_marca_producto_fk">
+          <End Role="marca_producto" Type="Self.marca_producto" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="marca_producto">
+              <PropertyRef Name="id_marca" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="marca_producto_id_marca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_cabecera_proveedor_fk">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="pedido_cabecera" Type="Self.pedido_cabecera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="pedido_cabecera">
+              <PropertyRef Name="proveedor_id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_almacen_producto_fk">
+          <End Role="producto" Type="Self.producto" Multiplicity="1" />
+          <End Role="producto_almacen" Type="Self.producto_almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="cod_prod" />
+            </Principal>
+            <Dependent Role="producto_almacen">
+              <PropertyRef Name="producto_cod_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="producto_proveedor_fk">
+          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proveedor">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="proveedor_id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_servicios_fk">
+          <End Role="servicios" Type="Self.servicio" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="cod_servicio" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="servicios_cod_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="cod_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rol_cod_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SERVIEXPRESSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="almacens" EntityType="Self.almacen" />
+          <EntitySet Name="boletas" EntityType="Self.boleta" />
+          <EntitySet Name="clientes" EntityType="Self.cliente" />
+          <EntitySet Name="detalle_pago" EntityType="Self.detalle_pago" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" />
+          <EntitySet Name="detalle_permiso" EntityType="Self.detalle_permiso" />
+          <EntitySet Name="dia_habil" EntityType="Self.dia_habil" />
+          <EntitySet Name="empleadoes" EntityType="Self.empleado" />
+          <EntitySet Name="familia_producto" EntityType="Self.familia_producto" />
+          <EntitySet Name="horarios" EntityType="Self.horario" />
+          <EntitySet Name="marca_producto" EntityType="Self.marca_producto" />
+          <EntitySet Name="moduloes" EntityType="Self.modulo" />
+          <EntitySet Name="pedido_cabecera" EntityType="Self.pedido_cabecera" />
+          <EntitySet Name="productoes" EntityType="Self.producto" />
+          <EntitySet Name="producto_almacen" EntityType="Self.producto_almacen" />
+          <EntitySet Name="proveedors" EntityType="Self.proveedor" />
+          <EntitySet Name="reservas" EntityType="Self.reserva" />
+          <EntitySet Name="rols" EntityType="Self.rol" />
+          <EntitySet Name="servicios" EntityType="Self.servicio" />
+          <EntitySet Name="tipo_boleta" EntityType="Self.tipo_boleta" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <AssociationSet Name="producto_almacen_almacen_fk" Association="Self.producto_almacen_almacen_fk">
+            <End Role="almacen" EntitySet="almacens" />
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+          </AssociationSet>
+          <AssociationSet Name="boleta_servicios_fk" Association="Self.boleta_servicios_fk">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="boleta" EntitySet="boletas" />
+          </AssociationSet>
+          <AssociationSet Name="boleta_tipo_boleta_fk" Association="Self.boleta_tipo_boleta_fk">
+            <End Role="tipo_boleta" EntitySet="tipo_boleta" />
+            <End Role="boleta" EntitySet="boletas" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pago_boleta_fk" Association="Self.detalle_pago_boleta_fk">
+            <End Role="boleta" EntitySet="boletas" />
+            <End Role="detalle_pago" EntitySet="detalle_pago" />
+          </AssociationSet>
+          <AssociationSet Name="cliente_usuario_fk" Association="Self.cliente_usuario_fk">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="cliente" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_cliente_fk" Association="Self.reserva_cliente_fk">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="reserva" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pago_producto_almacen_fk" Association="Self.detalle_pago_producto_almacen_fk">
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+            <End Role="detalle_pago" EntitySet="detalle_pago" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pedido_pedido_cabecera_fk" Association="Self.detalle_pedido_pedido_cabecera_fk">
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_pedido_producto_fk" Association="Self.detalle_pedido_producto_fk">
+            <End Role="producto" EntitySet="productoes" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_permiso_modulo_fk" Association="Self.detalle_permiso_modulo_fk">
+            <End Role="modulo" EntitySet="moduloes" />
+            <End Role="detalle_permiso" EntitySet="detalle_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="detalle_permiso_rol_fk" Association="Self.detalle_permiso_rol_fk">
+            <End Role="rol" EntitySet="rols" />
+            <End Role="detalle_permiso" EntitySet="detalle_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="horario_dia_habil_fk" Association="Self.horario_dia_habil_fk">
+            <End Role="dia_habil" EntitySet="dia_habil" />
+            <End Role="horario" EntitySet="horarios" />
+          </AssociationSet>
+          <AssociationSet Name="empleado_usuario_fk" Association="Self.empleado_usuario_fk">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="empleado" EntitySet="empleadoes" />
+          </AssociationSet>
+          <AssociationSet Name="horario_empleado_fk" Association="Self.horario_empleado_fk">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="horario" EntitySet="horarios" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_cabecera_empleado_fk" Association="Self.pedido_cabecera_empleado_fk">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_empleado_fk" Association="Self.reserva_empleado_fk">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="reserva" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="producto_familia_producto_fk" Association="Self.producto_familia_producto_fk">
+            <End Role="familia_producto" EntitySet="familia_producto" />
+            <End Role="producto" EntitySet="productoes" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_horario_fk" Association="Self.reserva_horario_fk">
+            <End Role="horario" EntitySet="horarios" />
+            <End Role="reserva" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="producto_marca_producto_fk" Association="Self.producto_marca_producto_fk">
+            <End Role="marca_producto" EntitySet="marca_producto" />
+            <End Role="producto" EntitySet="productoes" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_cabecera_proveedor_fk" Association="Self.pedido_cabecera_proveedor_fk">
+            <End Role="proveedor" EntitySet="proveedors" />
+            <End Role="pedido_cabecera" EntitySet="pedido_cabecera" />
+          </AssociationSet>
+          <AssociationSet Name="producto_almacen_producto_fk" Association="Self.producto_almacen_producto_fk">
+            <End Role="producto" EntitySet="productoes" />
+            <End Role="producto_almacen" EntitySet="producto_almacen" />
+          </AssociationSet>
+          <AssociationSet Name="producto_proveedor_fk" Association="Self.producto_proveedor_fk">
+            <End Role="proveedor" EntitySet="proveedors" />
+            <End Role="producto" EntitySet="productoes" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_servicios_fk" Association="Self.reserva_servicios_fk">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="reserva" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_rol_fk" Association="Self.usuario_rol_fk">
+            <End Role="rol" EntitySet="rols" />
+            <End Role="usuario" EntitySet="usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SERVIEXPRESSModelStoreContainer" CdmEntityContainer="SERVIEXPRESSEntities">
+          <EntitySetMapping Name="almacens">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.almacen">
+              <MappingFragment StoreEntitySet="almacen">
+                <ScalarProperty Name="id_almacén" ColumnName="id_almacén" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="boletas">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.boleta">
+              <MappingFragment StoreEntitySet="boleta">
+                <ScalarProperty Name="n_boleta" ColumnName="n_boleta" />
+                <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="direccion_empresa" ColumnName="direccion_empresa" />
+                <ScalarProperty Name="rut_empresa" ColumnName="rut_empresa" />
+                <ScalarProperty Name="precio_total" ColumnName="precio_total" />
+                <ScalarProperty Name="servicios_cod_servicio" ColumnName="servicios_cod_servicio" />
+                <ScalarProperty Name="tipo_boleta_id_tipo_boleta" ColumnName="tipo_boleta_id_tipo_boleta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="rut_cliente" ColumnName="rut_cliente" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="apellido_cliente" ColumnName="apellido_cliente" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="telefono_adicional" ColumnName="telefono_adicional" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="usuario_id_usuario" ColumnName="usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_pago">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.detalle_pago">
+              <MappingFragment StoreEntitySet="detalle_pago">
+                <ScalarProperty Name="id_detalle_pago" ColumnName="id_detalle_pago" />
+                <ScalarProperty Name="boleta_n_boleta" ColumnName="boleta_n_boleta" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="producto_almacen_id_producto_almacen" ColumnName="producto_almacen_id_producto_almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_pedido">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.detalle_pedido">
+              <MappingFragment StoreEntitySet="detalle_pedido">
+                <ScalarProperty Name="id_detalle_pedido" ColumnName="id_detalle_pedido" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="valor_compra" ColumnName="valor_compra" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="pedido_cabecera_id_pedido" ColumnName="pedido_cabecera_id_pedido" />
+                <ScalarProperty Name="producto_cod_prod" ColumnName="producto_cod_prod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_permiso">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.detalle_permiso">
+              <MappingFragment StoreEntitySet="detalle_permiso">
+                <ScalarProperty Name="id_detalle" ColumnName="id_detalle" />
+                <ScalarProperty Name="seccion" ColumnName="seccion" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+                <ScalarProperty Name="modulo_id_modulo" ColumnName="modulo_id_modulo" />
+                <ScalarProperty Name="rol_cod_rol" ColumnName="rol_cod_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dia_habil">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.dia_habil">
+              <MappingFragment StoreEntitySet="dia_habil">
+                <ScalarProperty Name="cod_dia" ColumnName="cod_dia" />
+                <ScalarProperty Name="nombre_dia" ColumnName="nombre_dia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleadoes">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="rut_empleado" ColumnName="rut_empleado" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="apellido_empleado" ColumnName="apellido_empleado" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="telefono_adicional" ColumnName="telefono_adicional" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="usuario_id_usuario" ColumnName="usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="familia_producto">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.familia_producto">
+              <MappingFragment StoreEntitySet="familia_producto">
+                <ScalarProperty Name="id_familia" ColumnName="id_familia" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horarios">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.horario">
+              <MappingFragment StoreEntitySet="horario">
+                <ScalarProperty Name="id_horario" ColumnName="id_horario" />
+                <ScalarProperty Name="empleado_rut_empleado" ColumnName="empleado_rut_empleado" />
+                <ScalarProperty Name="dia_habil_cod_dia" ColumnName="dia_habil_cod_dia" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="disponibilidad" ColumnName="disponibilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="marca_producto">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.marca_producto">
+              <MappingFragment StoreEntitySet="marca_producto">
+                <ScalarProperty Name="id_marca" ColumnName="id_marca" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moduloes">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.modulo">
+              <MappingFragment StoreEntitySet="modulo">
+                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="icono" ColumnName="icono" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido_cabecera">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.pedido_cabecera">
+              <MappingFragment StoreEntitySet="pedido_cabecera">
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="fecha_emision" ColumnName="fecha_emision" />
+                <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="empleado_rut_empleado" ColumnName="empleado_rut_empleado" />
+                <ScalarProperty Name="proveedor_id_proveedor" ColumnName="proveedor_id_proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productoes">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+                <ScalarProperty Name="precio_unitario" ColumnName="precio_unitario" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="familia_producto_id_familia" ColumnName="familia_producto_id_familia" />
+                <ScalarProperty Name="proveedor_id_proveedor" ColumnName="proveedor_id_proveedor" />
+                <ScalarProperty Name="marca_producto_id_marca" ColumnName="marca_producto_id_marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto_almacen">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.producto_almacen">
+              <MappingFragment StoreEntitySet="producto_almacen">
+                <ScalarProperty Name="id_producto_almacen" ColumnName="id_producto_almacen" />
+                <ScalarProperty Name="producto_cod_prod" ColumnName="producto_cod_prod" />
+                <ScalarProperty Name="almacen_id_almacén" ColumnName="almacen_id_almacén" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proveedors">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.proveedor">
+              <MappingFragment StoreEntitySet="proveedor">
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="n_contacto" ColumnName="n_contacto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="rut_proveedor" ColumnName="rut_proveedor" />
+                <ScalarProperty Name="telefono_proveedor" ColumnName="telefono_proveedor" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservas">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.reserva">
+              <MappingFragment StoreEntitySet="reserva">
+                <ScalarProperty Name="n_reserva" ColumnName="n_reserva" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="patente" ColumnName="patente" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="anno_vehiculo" ColumnName="anno_vehiculo" />
+                <ScalarProperty Name="descripcion_vehiculo" ColumnName="descripcion_vehiculo" />
+                <ScalarProperty Name="cliente_rut_cliente" ColumnName="cliente_rut_cliente" />
+                <ScalarProperty Name="servicios_cod_servicio" ColumnName="servicios_cod_servicio" />
+                <ScalarProperty Name="empleado_rut_empleado" ColumnName="empleado_rut_empleado" />
+                <ScalarProperty Name="horario_id_horario" ColumnName="horario_id_horario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rols">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="cod_rol" ColumnName="cod_rol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.servicio">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="cod_servicio" ColumnName="cod_servicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tarifa" ColumnName="tarifa" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_boleta">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.tipo_boleta">
+              <MappingFragment StoreEntitySet="tipo_boleta">
+                <ScalarProperty Name="id_tipo_boleta" ColumnName="id_tipo_boleta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="SERVIEXPRESSModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="rol_cod_rol" ColumnName="rol_cod_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

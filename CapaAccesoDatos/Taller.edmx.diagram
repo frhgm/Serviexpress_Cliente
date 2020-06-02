@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="42f21b047d2a4587b7924daa83b5503c" Name="Diagram1">
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.almacen" Width="1.5" PointX="9" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.boleta" Width="1.5" PointX="11.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.cliente" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.detalle_pago" Width="1.5" PointX="13.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.detalle_pedido" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.detalle_permiso" Width="1.5" PointX="3.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.dia_habil" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.empleado" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.familia_producto" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.horario" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.marca_producto" Width="1.5" PointX="3.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.modulo" Width="1.5" PointX="1.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.pedido_cabecera" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.producto" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.producto_almacen" Width="1.5" PointX="11.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.proveedor" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.reserva" Width="1.5" PointX="14.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.rol" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.servicio" Width="1.5" PointX="9" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.tipo_boleta" Width="1.5" PointX="9" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SERVIEXPRESSModel.usuario" Width="1.5" PointX="1.5" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="SERVIEXPRESSModel.producto_almacen_almacen_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.boleta_servicios_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.boleta_tipo_boleta_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_pago_boleta_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.cliente_usuario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.reserva_cliente_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_pago_producto_almacen_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_pedido_pedido_cabecera_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_pedido_producto_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_permiso_modulo_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.detalle_permiso_rol_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.horario_dia_habil_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.empleado_usuario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.horario_empleado_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.pedido_cabecera_empleado_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.reserva_empleado_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.producto_familia_producto_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.reserva_horario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.producto_marca_producto_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.pedido_cabecera_proveedor_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.producto_almacen_producto_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.producto_proveedor_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.reserva_servicios_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="SERVIEXPRESSModel.usuario_rol_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
