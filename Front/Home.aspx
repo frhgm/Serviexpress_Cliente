@@ -2,48 +2,37 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <div style="height:200px; width:1030px; border-style:solid;border-width:2px;">
-            <h1 align="center">ICONO GALERIA</h1>
+    <img src="Content/taller.jpg" class="fondo" alt="">
+
+    <div class="row home">
+        <div class="col-md-3">
+            <a>Cambio de aceite</a>
+            <p>
+                Agende con nosotros este servicio en una variedad de horarios
+            </p>
+        </div>
+        <div class="col-md-3">
+            <a>Reemplazo Filtros</a>
+            <p>
+                Agende con nosotros este servicio en una variedad de horarios
+            </p>
+        </div>
+        <div class="col-md-3">
+            <a>Servicio total</a>
+            <p>
+                Agende con nosotros este servicio en una variedad de horarios
+            </p>
+        </div>
+        <div class="col-md-3">
+            <a>Neumaticos de nieve</a>
+            <p>
+                Agende con nosotros este servicio en una variedad de horarios
+            </p>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-md-3">
-            <a href="detalleServicios.aspx">Cambio de aceite</a>
-            <p>
-                Agende con nosotros este servicio en una variedad de horarios
-            </p>
-            <p>
-                <a class="btn btn-default" href="~ReservaHora.aspx">Agendar &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <a href="detalleServicios.aspx">Reemplazo Filtros</a>
-            <p>
-                Agende con nosotros este servicio en una variedad de horarios
-            </p>
-            <p>
-                <a class="btn btn-default" href="~ReservaHora.aspx">Agendar &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <a href="detalleServicios.aspx">Servicio total</a>
-            <p>
-                Agende con nosotros este servicio en una variedad de horarios
-            </p>
-            <p>
-                <a class="btn btn-default" href="~ReservaHora.aspx">Agendar &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <a href="detalleServicios.aspx">Neumaticos de nieve</a>
-            <p>
-                Agende con nosotros este servicio en una variedad de horarios
-            </p>
-            <p>
-                <a class="btn btn-default" href="~ReservaHora.aspx">Agendar &raquo;</a>
-            </p>
+        <div class="col-md-12">
+            <a class="btn btn-dark btn-block" href="/ReservarHora.aspx">Agendar</a>
         </div>
     </div>
 

@@ -108,8 +108,8 @@
     <Content Include="About.aspx" />
     <Content Include="Contacto.aspx" />
     <Content Include="Content\AdminLTE.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\taller.jpg" />
     <Content Include="Default.aspx" />
     <Content Include="detalleServicios.aspx" />
     <Content Include="Home.aspx" />
@@ -121,22 +121,37 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="js\CRUDUsuario.js" />
+    <Content Include="js\reserva.js" />
+    <Content Include="libman.json" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.js.map" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="InicioSesion.aspx" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.css" />
+    <Content Include="lib\twitter-bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.js" />
+    <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js" />
     <Content Include="miCuenta.aspx" />
     <Content Include="Nosotros.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="ReservaExitosa.aspx" />
     <Content Include="ReservarHora.aspx" />
     <Content Include="script.js" />
-    <Content Include="Scripts\adminlte.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -278,8 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

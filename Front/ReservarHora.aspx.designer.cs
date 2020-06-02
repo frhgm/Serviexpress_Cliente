@@ -7,20 +7,75 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Front
-{
-
-
-    public partial class ReservarHora
-    {
-
+namespace Front {
+    
+    
+    public partial class ReservarHora {
+        
         /// <summary>
-        /// btnConfirmarReserva control.
+        /// upPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmarReserva;
+        protected global::System.Web.UI.UpdatePanel upPanel;
+        
+        /// <summary>
+        /// txtRut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRut;
+        
+        /// <summary>
+        /// grdHorariosAtencion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdHorariosAtencion;
+        
+        /// <summary>
+        /// grdBloque control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdBloque;
+        
+        /// <summary>
+        /// btnReservarCita control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReservarCita;
+        
+        /// <summary>
+        /// idPaciente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idPaciente;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new Front.SiteMaster Master {
+            get {
+                return ((Front.SiteMaster)(base.Master));
+            }
+        }
     }
 }

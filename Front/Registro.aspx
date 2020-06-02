@@ -4,91 +4,75 @@
     <section class="content-header">
         <h1 style="text-align: center">CREAR CUENTA NUEVA</h1>
     </section>
-
+    <!--REFORMAT CTRL+E,C-->
 
     <section class="content">
 
-        <div class="row"><!--FILA 1-->
-            <div class="col-md-6"><!--COLUMNA 1-->
-                <div class="box box-body">
-                    <div class="box-body" id="columna1">
-                        <div class="form-group">
-                            <label for="txtNombre">INGRESE NOMBRE</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtNombre" value="" placeholder="ej: Pedro" class="form-control" autocomplete="off"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtApellido">INGRESE APELLIDO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtApellido" value="" placeholder="ej: Perez" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtRut">INGRESE RUT</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtRut" value="" placeholder="sin puntos ni guión" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtApellido">NOMBRE DE USUARIO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtUsuario" value="" placeholder="AUTOMATICO" class="form-control" disabled="disabled" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtCorreo">CORREO ELECTRONICO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtCorreo" value="" placeholder="ej: pedro@correo.com" class="form-control" autocomplete="off" />
-                        </div>
-                    </div>
+        <div class="row">
+            <!--FILA 1-->
+            <div class="col-md-12 caja">
+                <!--COLUMNA 1-->
+                <div class="form-group">
+                    <label for="txtUsuario">INGRESE USUARIO</label>
+                    <asp:TextBox ID="txtUsuario" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                 </div>
+                <div class="form-group">
+                    <label for="txtCorreo">INGRESE CORREO</label>
+                    <asp:TextBox ID="txtCorreo" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label for="txtPassword">INGRESE password</label>
+                    <asp:TextBox ID="txtPassword" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label for="txtFecha">FECHA CREACION</label>
+                    <asp:TextBox ID="txtFecha" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label for="txtActivo">ACTIVO</label>
+                    <asp:TextBox ID="txtActivo" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label for="txtRol">RoL</label>
+                    <asp:TextBox ID="txtRol" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                </div>
+
+
             </div>
 
-            <div class="col-md-6"> <!--COLUMNA 2-->
-                <div class="box box-body">
-                    <div class="box-body" id="columna2">
-                        <!--INPUT 1-->
-                        <div class="form-group">
-                            <label for="txtNombre">INGRESE DIRECCIÓN</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtDireccion" value="" placeholder="Ingrese dirección" class="form-control" autocomplete="off" />
-                        </div>
-                        <!--INPUT 2-->
-                        <div class="form-group">
-                            <label for="txtFechaNacimiento">FECHA DE NACIMIENTO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtFechaNacimiento" value="" placeholder="Ingrese fecha de nacimiento" class="form-control" autocomplete="off" />
-                        </div>
 
-                        <div class="form-group">
-                            <label for="txtTelefono">INGRESE TELEFONO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtTelefono" value="" placeholder="227598648" class="form-control" autocomplete="off" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtTelefono2">INGRESE TELEFONO 2</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtTelefono2" value="" placeholder="224869674" class="form-control" autocomplete="off" />
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-          </div>
-        <br />
-        <div align="center">
-                <button type="button" class="btn btn-primary">Registrar</button>
-                <button type="button" class="btn btn-default">No Registrar</button>
         </div>
-</section>
+        <br/>
+        <div class="text-center">
+            <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Width="200px" Text="Registrar" OnClick="btnRegistrar_Click"/>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="box-title">Lista de Usuarios</h3>
+            </div>
+            <div class="table-responsive">
+                <table id="tbl_usuarios" class="table table-bordered table-hover text-center">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CORREO</th>
+                        <th>FECHA CREACIÓN</th>
+                        <th>CONTRASEÑA</th>
+                        <th>ACTIVO</th>
+                        <th>ROL</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbl_body_table">
+                    <!-- DATA POR MEDIO DE AJAX-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/CRUDUsuario.js" type="text/javascript">
         
-    
+        </script>
 </asp:Content>

@@ -23,6 +23,8 @@ namespace Front
 
         protected void LoginUser_Authenticate(object sender, AuthenticateEventArgs e)
         {
+
+            bool conectado = false;
             bool auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
 
             if (auth)
@@ -35,7 +37,8 @@ namespace Front
                     //SessionManager.UserSessionId = objEmpleado.ID.ToString();
                     sessionManager.UserSessionUsuario = objUsuario;
                     FormsAuthentication.SetAuthCookie(LoginUser.UserName, true);
-                    Response.Redirect("miCuenta.aspx"); 
+                    Response.Redirect("miCuenta.aspx");
+                    conectado = true;
                 }
                 else
                 {

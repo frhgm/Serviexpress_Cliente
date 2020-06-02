@@ -53,6 +53,7 @@
     <Compile Include="almacen.cs">
       <DependentUpon>Taller.tt</DependentUpon>
     </Compile>
+    <Compile Include="BloqueDAO.cs" />
     <Compile Include="boleta.cs">
       <DependentUpon>Taller.tt</DependentUpon>
     </Compile>
@@ -105,6 +106,7 @@
     <Compile Include="reserva.cs">
       <DependentUpon>Taller.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReservaDAO.cs" />
     <Compile Include="rol.cs">
       <DependentUpon>Taller.tt</DependentUpon>
     </Compile>

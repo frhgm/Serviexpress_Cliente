@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CapaAccesoDatos;
 using CapaEntidades;
 
@@ -30,6 +31,18 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+        
+        public bool RegistrarUsuario(Usuario objUsuario)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().RegistrarUsuario(objUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 /*
         public Usuario BuscarUsuario(String nroDocumento)
         {
@@ -43,5 +56,17 @@ namespace CapaLogicaNegocio
             }
         }
         */
+
+        public List<Usuario> ListarUsuarios()
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().ListarUsuarios();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -1,114 +1,107 @@
 ﻿<%@ Page Title="Reservar hora" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReservarHora.aspx.cs" Inherits="Front.ReservarHora" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="cajaDetalleServicio">
-        <div class="estiloReserva">
-            <h1>Reserva de hora</h1>
-            <h2>Nombre de servicio</h2>
+    <asp:UpdatePanel ID="upPanel" runat="server">
+        <ContentTemplate>
+            <section class="content">
+                <section class="content-header" style="padding-top: 5%;">
+                    <h3 style="text-align: center">HORARIOS DE ATENCIÓN</h3>
+                </section>
+                <div class="row">
+                    <div class="offset-md-4 col-md-4 offset-md-4 text-center">
+                        <asp:Label runat="server">INGRESE RUT</asp:Label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-4 col-md-4 offset-md-4">
+                        <asp:TextBox ID="txtRut" runat="server" CssClass="form-control" MaxLength="9"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Crear nuestro GridView -->
+                                <asp:GridView ID="grdHorariosAtencion" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblFechaHeader" runat="server" Text="Fecha de Atención"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFecha" runat="server" Text='<%#Eval("Fecha") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblHoraHeader" runat="server" Text="Hora de Atención"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblHora" runat="server" Text='<%#Eval("Hora") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblNumeroHeader" runat="server" Text="N° Reserva"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblNumero" runat="server" Text='<%#Eval("Numero_Reserva") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblBloqueHeader" runat="server" Text="Fecha"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfIdMedico" runat="server" Value='<%#Eval("Fecha") %>'/>
+                                                <asp:Label ID="lblMedico" runat="server" Text='<%#Eval("Fecha") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="box box-body">
-                        <div class="box-body columnaReserva1">
+                                <asp:GridView ID="grdBloque" runat="server" CssClass="table table-bordered table-hover" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblBloqueHeader" runat="server" Text="Hora inicio"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfHoraInicio" runat="server" Value='<%#Eval("hora_inicio") %>'/>
+                                                <asp:Label ID="lblHoraInicio" runat="server" Text='<%#Eval("hora_inicio") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                            <div class="form-group">
-                                <label for="txtNumeroReserva">NUMERO RESERVA</label>
+                                        <asp:TemplateField>
+                                            <HeaderTemplate>
+                                                <asp:Label ID="lblBloqueHeader" runat="server" Text="Hora Termino"></asp:Label>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfHoraFinal" runat="server" Value='<%#Eval("hora_final") %>'/>
+                                                <asp:Label ID="lblHoraFinal" runat="server" Text='<%#Eval("hora_final") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="txtNumeroReserva" value="" placeholder="AUTOMATICO" class="form-control" autocomplete="off" />
-                            </div>
-                            <div class="form-group">
-                                <label for="txtPatente">INGRESE PATENTE</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="txtPatente" value="" placeholder="ej: DFGH-11" class="form-control" autocomplete="off" />
-                            </div>
-                            <div class="form-group">
-                                <label for="txtMarca">INGRESE MARCA</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="txtMarca" value="" placeholder="Chevrolet" class="form-control" autocomplete="off" />
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <asp:Button ID="btnReservarCita" runat="server" Text="Reservar Cita" CssClass="btn btn-primary"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            <div class="col-md-6">
-                <div class="box box-body">
-                    <div class="box-body columnaReserva2">
-
-                        <div class="form-group">
-                            <label for="txtModelo">INGRESE MODELO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtModelo" value="" placeholder="Sail" class="form-control" disabled="disabled" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtAnio">INGRESE AÑO</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtAnio" value="" placeholder="2010" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtDescripcion">INGRESE DESCRIPCIÓN</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="txtDescripcion" value="" placeholder="Mantención total" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label for="txtSemana">INGRESE SEMANA</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" id="txtSemana" value="" class="form-control" autocomplete="off" />
-                        </div>
-                    </div>
-                    <label id="labelTotal">TOTAL: $111.000</label>
-                    <asp:Button ID="btnConfirmarReserva" runat="server" Text="Reservar" CssClass="btn btn-primary btnConfirmarReserva" OnClick="btnConfirmarReserva_Click"/>
-                </div>
-            </div>
-                
-        </div>
-    </div>
-        <table class="table table-striped table-hover" id="disponibilidad">
-            <tr>
-                <th>Horario</th>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miercoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
-            </tr>
-            <tr>
-                <th>08:00</th>
-                <th>Disponible</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-            </tr>
-            <tr>
-                <th>09:00</th>
-                <th>Disponible</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-            </tr>
-            <tr>
-                <th>10:00</th>
-                <th>Disponible</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-            </tr>
-            <tr>
-                <th>11:00</th>
-                <th>Disponible</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-                <th>Disponible</th>
-                <th>Agotado</th>
-            </tr>
-        </table>
-</div>
+            </section>
+            <%--<input id="idPaciente" type="hidden"  />--%>
+            <asp:HiddenField ID="idPaciente" runat="server" Visible="false"/>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <script src="js/reserva.js"></script>
 </asp:Content>
