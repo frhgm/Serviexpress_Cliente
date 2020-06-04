@@ -68,7 +68,7 @@ namespace CapaAccesoDatos
             return objHorario;
         }
         */
-        public List<BloqueHora> Listar()
+        public List<BloqueHora> Listar(int rut)
         {
             SqlConnection conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
@@ -78,6 +78,7 @@ namespace CapaAccesoDatos
             try
             {
                 cmd = new SqlCommand("[spListaHorariosAtencion]", conexion);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conexion.Open();
@@ -90,8 +91,8 @@ namespace CapaAccesoDatos
                 {
                     // llenamos los objetos
                     BloqueHora objHora = new BloqueHora();
-                    objHora.Hora_Inicio = Convert.ToDateTime(dr["hora_inicio"].ToString());
-                    objHora.Hora_Final = Convert.ToDateTime(dr["hora_final"].ToString());
+                    objHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
+                    objHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
 
                     Lista.Add(objHora);
                 }

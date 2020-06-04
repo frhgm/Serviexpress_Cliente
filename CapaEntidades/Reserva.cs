@@ -16,6 +16,9 @@ namespace CapaEntidades
         public int Codigo_Servicio { get; set; }
         public int Rut_Empleado { get; set; }
         public int Bloque_Hora { get; set; }
+        
+        public TimeSpan Hora_Inicio { get; set; }
+        public TimeSpan Hora_Final { get; set; }
 
         public Reserva()
         {

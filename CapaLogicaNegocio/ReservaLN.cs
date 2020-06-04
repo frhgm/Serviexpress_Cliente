@@ -32,11 +32,11 @@ namespace CapaLogicaNegocio
             }
         }
         */
-        public List<Reserva> Listar()
+        public List<Reserva> Listar(int rut)
         {
             try
             {
-                return ReservaDAO.getInstance().Listar();
+                return ReservaDAO.getInstance().Listar(rut);
             }
             catch (Exception ex)
             {

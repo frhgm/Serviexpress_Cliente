@@ -68,7 +68,7 @@ namespace CapaAccesoDatos
             return objHorario;
         }
         */
-        public List<Reserva> Listar()
+        public List<Reserva> Listar(int rut)
         {
             SqlConnection conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
@@ -78,6 +78,7 @@ namespace CapaAccesoDatos
             try
             {
                 cmd = new SqlCommand("[spListaHorariosAtencion]", conexion);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conexion.Open();
@@ -90,10 +91,14 @@ namespace CapaAccesoDatos
                 {
                     // llenamos los objetos
                     Reserva objReserva = new Reserva();
-                    objReserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
-                    objReserva.Hora = Convert.ToInt32(dr["hora"].ToString());
+                    //DATOS RESERVA
                     objReserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
-
+                    objReserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
+                    objReserva.Rut_Cliente = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
+                    //DATOS BLOQUE
+                    objReserva.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
+                    objReserva.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
+                    
                     Lista.Add(objReserva);
                 }
 
@@ -108,6 +113,7 @@ namespace CapaAccesoDatos
             }
             return Lista;
         }
+        
         /*
         public List<HorarioAtencion> ListarHorarioReservas(Int32 IdEspecialidad, DateTime Fecha)
         {

@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CapaPresentacion.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/html">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Taller Serviexpress</title>
+
+    
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="Content/Estilos.css" rel="stylesheet" />
+</head>
+<body>
+    <form class="form1" runat="server">
+        <!--<asp:ScriptManager runat="server">
+            
+        </asp:ScriptManager>-->
+
+        <nav class="navbar navbar-expand-sm fixed-top">
+            <a class="navbar-brand" href="/Home.aspx">SERVIEXPRESS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a href="Home.aspx" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="Nosotros.aspx" class="nav-link">Nosotros</a></li>
+                    <li class="nav-item"><a href="Contacto.aspx" class="nav-link">Contacto</a></li>
+                </ul>
+            
+            
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="Registro.aspx" class="nav-link">Registro</a></li>
+                    <li class="nav-item"><a href="InicioSesion.aspx" class="nav-link">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>SERVIEXPRESS</p>
+            </footer>
+            
+            <asp:ContentPlaceHolder ID="footer" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+    </form>
+        <script src="lib/twitter-bootstrap/js/bootstrap.js" type="text/javascript"></script>
+</body>
+    
+        
+    
+
+</html>
