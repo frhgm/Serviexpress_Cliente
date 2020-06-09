@@ -49,7 +49,7 @@ namespace CapaAccesoDatos
                     objCliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
                     objCliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
                     objCliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
-                    objCliente.Id_Usuario = Convert.ToInt32(dr["usuario_id_usuario"].ToString());
+                    objCliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
                 }
             }
             catch (Exception ex)
@@ -64,6 +64,42 @@ namespace CapaAccesoDatos
             return objCliente;
         }
 
+        public bool RegistrarCliente(Cliente objCliente)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spRegistrarCliente", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut", objCliente.Rut);
+                cmd.Parameters.AddWithValue("@prmNombre", objCliente.Nombre);
+                cmd.Parameters.AddWithValue("@prmApellido", objCliente.Apellido);
+                cmd.Parameters.AddWithValue("@prmTelefono", objCliente.Telefono);
+                cmd.Parameters.AddWithValue("@prmTelefono_Adicional", objCliente.Telefono_Adicional);
+                cmd.Parameters.AddWithValue("@prmDireccion", objCliente.Direccion);
+                cmd.Parameters.AddWithValue("@prmFechaNacimiento", objCliente.Fecha_Nacimiento);
+                cmd.Parameters.AddWithValue("@prmTipoCliente", objCliente.Tipo_Cliente);
+                con.Open();
+
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception ex)
+            {
+                response = false;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return response;
+        }
+        
         public Cliente BuscarCliente(String nroDocumento)
         {
             SqlConnection con = null;
@@ -91,7 +127,7 @@ namespace CapaAccesoDatos
                     objCliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
                     objCliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
                     objCliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
-                    objCliente.Id_Usuario = Convert.ToInt32(dr["usuario_id_usuario"].ToString());
+                    objCliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
                 }
 
             }

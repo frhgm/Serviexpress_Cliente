@@ -1,11 +1,18 @@
 ﻿.home{
-    padding-top: 1em;
+    margin-top: 0.5em;
 }
-
+h2{
+    margin-top:1em;
+}
+/*
+#registroCliente{
+    display: none;
+}
+*/
 .fondo{
     background-repeat: no-repeat;
     width: 100%;
-    height: auto;
+    height: 31em;
     border-radius: 0px;
     padding: 0;
 }

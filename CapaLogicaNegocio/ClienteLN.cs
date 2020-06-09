@@ -46,5 +46,17 @@ namespace CapaLogicaNegocio
                 throw e;
             }
         }
+        
+        public bool RegistrarCliente(Cliente objCliente)
+        {
+            try
+            {
+                return ClienteDAO.getInstance().RegistrarCliente(objCliente);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -36,11 +36,23 @@ namespace CapaLogicaNegocio
             }
         }
         */
-        public List<BloqueHora> Listar(int rut)
+        public List<BloqueHora> ListarReservas(int rut)
         {
             try
             {
-                return BloqueDAO.getInstance().Listar(rut);
+                return BloqueDAO.getInstance().ListarReservas(rut);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+        public List<BloqueHora> ListarBloques(int rut)
+        {
+            try
+            {
+                return BloqueDAO.getInstance().ListarBloques(rut);
             }
             catch (Exception ex)
             {

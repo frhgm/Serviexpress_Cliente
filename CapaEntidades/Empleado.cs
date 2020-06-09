@@ -9,9 +9,9 @@ namespace CapaEntidades
     public class Empleado
     {
         public int Rut { get; set; }
-        public String Nombre { get; set; }
-        public String Apellido { get; set; }
-        public String Direccion { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Direccion { get; set; }
         public int Telefono { get; set; }
         public int Telefono_Adicional { get; set; }
         public DateTime Fecha_Nacimiento { get; set; }
@@ -19,7 +19,7 @@ namespace CapaEntidades
 
         public Empleado() : this(0, "", "", "", 0, 0, DateTime.Today, 0) { }
 
-        public Empleado(int Rut,String Nombre, String Apellido, String Direccion,int Telefono,int Telefono_Adicional,DateTime Fecha_Nacimiento,int Id_Usuario)
+        public Empleado(int Rut,string Nombre, string Apellido, string Direccion,int Telefono,int Telefono_Adicional,DateTime Fecha_Nacimiento,int Id_Usuario)
         {
             this.Rut = Rut;
             this.Nombre = Nombre;

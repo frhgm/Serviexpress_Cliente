@@ -19,36 +19,22 @@ namespace CapaLogicaNegocio
             return reserva;
         }
         #endregion
-        /*
-        public Reserva RegistrarReserva(Reserva objReserva)
+        public bool AgendarReserva(Reserva objReserva)
         {
             try
             {
-                return ReservaDAO.getInstance().RegistrarReserva(objReserva);
+                return ReservaDAO.getInstance().AgendarReserva(objReserva);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        */
         public List<Reserva> Listar(int rut)
         {
             try
             {
                 return ReservaDAO.getInstance().Listar(rut);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        /*
-        public List<Reserva> ListarReservas()
-        {
-            try
-            {
-                return ReservaDAO.getInstance().ListarReservas();
             }
             catch (Exception ex)
             {

@@ -146,6 +146,7 @@
     <Content Include="lib\twitter-bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="lib\twitter-bootstrap\js\bootstrap.js" />
     <Content Include="lib\twitter-bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\twitter-bootstrap\js\jquery-3.5.1.js" />
     <Content Include="miCuenta.aspx" />
     <Content Include="Nosotros.aspx" />
     <Content Include="Registro.aspx" />

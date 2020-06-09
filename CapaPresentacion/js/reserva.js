@@ -46,3 +46,17 @@ function limpiarDatosPaciente() {
   $("#txtEdad").val("");
   $("#txtSexo").val("");
 }
+/*
+function ocultarMostrar() {
+  var x = document.getElementById("registroCliente");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+*/
+function imprimirFecha() {
+  var x = document.getElementById("dpFechaNacimiento").value;
+  document.getElementById("labelNacimiento").innerHTML = x;
+}

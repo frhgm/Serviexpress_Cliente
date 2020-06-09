@@ -20,55 +20,7 @@ namespace CapaAccesoDatos
             return daoBloque;
         }
         #endregion
-        /*
-        public Reserva RegistrarReserva(Reserva objReserva)
-        {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
-            SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            Reserva objReserva = null;
-
-            try
-            {
-                cmd = new SqlCommand("spRegistrarHorarioAtencion", conexion);
-                cmd.Parameters.AddWithValue("@prmIdMedico", objHorarioAtencion.Medico.IdMedico);
-                cmd.Parameters.AddWithValue("@prmHora", objHorarioAtencion.Hora.hora);
-                cmd.Parameters.AddWithValue("@prmFecha", objHorarioAtencion.Fecha);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                conexion.Open();
-
-                dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    objHorario = new HorarioAtencion()
-                    {
-                        IdHorarioAtencion = Convert.ToInt32(dr["idHorarioAtencion"].ToString()),
-                        Fecha = Convert.ToDateTime(dr["fecha"].ToString()),
-                        Hora = new Hora()
-                        {
-                            IdHora = Convert.ToInt32(dr["idHora"].ToString()),
-                            hora = dr["hora"].ToString()
-                        },
-                        Estado = Convert.ToBoolean(dr["estado"].ToString())
-                    };
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                conexion.Close();
-            }
-
-            return objHorario;
-        }
-        */
-        public List<BloqueHora> Listar(int rut)
+        public List<BloqueHora> ListarReservas(int rut)
         {
             SqlConnection conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
@@ -77,7 +29,7 @@ namespace CapaAccesoDatos
 
             try
             {
-                cmd = new SqlCommand("[spListaHorariosAtencion]", conexion);
+                cmd = new SqlCommand("[spListaHorariosReserva]", conexion);
                 cmd.Parameters.AddWithValue("@prmRut", rut);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -91,8 +43,50 @@ namespace CapaAccesoDatos
                 {
                     // llenamos los objetos
                     BloqueHora objHora = new BloqueHora();
+                    objHora.Id_Horario = Convert.ToInt32(dr["id_horario"].ToString());
                     objHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
                     objHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
+
+                    Lista.Add(objHora);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return Lista;
+        }
+        
+        public List<BloqueHora> ListarBloques(int rut)
+        {
+            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<BloqueHora> Lista = null;
+
+            try
+            {
+                cmd = new SqlCommand("[spListaBloques]", conexion);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conexion.Open();
+
+                dr = cmd.ExecuteReader();
+
+                Lista = new List<BloqueHora>();
+
+                while (dr.Read())
+                {
+                    // llenamos los objetos
+                    BloqueHora objHora = new BloqueHora();
+                    objHora.Id_Horario = Convert.ToInt32(dr["id_horario"].ToString());
+                    objHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
 
                     Lista.Add(objHora);
                 }

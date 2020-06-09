@@ -113,6 +113,7 @@
     <Compile Include="servicio.cs">
       <DependentUpon>Taller.tt</DependentUpon>
     </Compile>
+    <Compile Include="ServicioDAO.cs" />
     <Compile Include="Taller.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

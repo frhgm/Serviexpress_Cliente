@@ -20,54 +20,47 @@ namespace CapaAccesoDatos
             return daoReserva;
         }
         #endregion
-        /*
-        public Reserva RegistrarReserva(Reserva objReserva)
+        public bool AgendarReserva(Reserva objReserva)
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            SqlConnection con = null;
             SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            Reserva objReserva = null;
+            bool response = false;
 
             try
             {
-                cmd = new SqlCommand("spRegistrarHorarioAtencion", conexion);
-                cmd.Parameters.AddWithValue("@prmIdMedico", objHorarioAtencion.Medico.IdMedico);
-                cmd.Parameters.AddWithValue("@prmHora", objHorarioAtencion.Hora.hora);
-                cmd.Parameters.AddWithValue("@prmFecha", objHorarioAtencion.Fecha);
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spAgendarReserva", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmReserva", objReserva.Numero_Reserva);
+                cmd.Parameters.AddWithValue("@prmFecha", objReserva.Fecha);
+                cmd.Parameters.AddWithValue("@prmPatente", objReserva.Patente);
+                cmd.Parameters.AddWithValue("@prmMarca", objReserva.Marca);
+                cmd.Parameters.AddWithValue("@prmModelo", objReserva.Modelo);
+                cmd.Parameters.AddWithValue("@prmAnno", objReserva.Anno);
+                cmd.Parameters.AddWithValue("@prmDescripcion", objReserva.Descripcion);
+                cmd.Parameters.AddWithValue("@prmRutCliente", objReserva.Rut_Cliente);
+                cmd.Parameters.AddWithValue("@prmServicio", objReserva.Codigo_Servicio);
+                cmd.Parameters.AddWithValue("@prmRutEmpleado", objReserva.Rut_Empleado);
+                cmd.Parameters.AddWithValue("@prmBloque", objReserva.Bloque_Hora);
+                cmd.Parameters.AddWithValue("@prmEstado", objReserva.Estado);
+                
 
-                conexion.Open();
-
-                dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    objHorario = new HorarioAtencion()
-                    {
-                        IdHorarioAtencion = Convert.ToInt32(dr["idHorarioAtencion"].ToString()),
-                        Fecha = Convert.ToDateTime(dr["fecha"].ToString()),
-                        Hora = new Hora()
-                        {
-                            IdHora = Convert.ToInt32(dr["idHora"].ToString()),
-                            hora = dr["hora"].ToString()
-                        },
-                        Estado = Convert.ToBoolean(dr["estado"].ToString())
-                    };
-                }
+                con.Open();
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
 
             }
             catch (Exception ex)
             {
+                response = false;
                 throw ex;
             }
             finally
             {
-                conexion.Close();
+                con.Close();
             }
-
-            return objHorario;
+            return response;
         }
-        */
         public List<Reserva> Listar(int rut)
         {
             SqlConnection conexion = Conexion.getInstance().ConexionBD();

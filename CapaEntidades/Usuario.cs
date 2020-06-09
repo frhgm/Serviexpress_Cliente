@@ -6,8 +6,8 @@ namespace CapaEntidades
   {
 
     public int Id_Usuario;
-    public String Correo_Electronico;
-    public String Password;
+    public string Correo_Electronico;
+    public string Password;
     public DateTime Fecha_Creacion;
     public Boolean Activo;
     public int Codigo_Rol;

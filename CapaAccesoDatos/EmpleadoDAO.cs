@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CapaAccesoDatos
 {
-    class EmpleadoDAO
+    public class EmpleadoDAO
     {
         #region "PATRON SINGLETON"
         private static EmpleadoDAO daoEmpleado = null;
@@ -105,6 +105,46 @@ namespace CapaAccesoDatos
             }
 
             return objEmpleado;
+        }
+        
+        public List<Empleado> ListarEmpleados()
+        {
+            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<Empleado> Lista = null;
+
+            try
+            {
+                cmd = new SqlCommand("[spListaEmpleados]", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conexion.Open();
+
+                dr = cmd.ExecuteReader();
+
+                Lista = new List<Empleado>();
+
+                while (dr.Read())
+                {
+                    // llenamos los objetos
+                    Empleado objEmpleado = new Empleado();
+                    objEmpleado.Rut = Convert.ToInt32(dr["rut_empleado"].ToString());
+                    objEmpleado.Nombre = dr["NOMBRE"].ToString();
+
+                    Lista.Add(objEmpleado);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return Lista;
         }
 
     }

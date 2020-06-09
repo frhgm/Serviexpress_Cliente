@@ -38,7 +38,6 @@ namespace CapaPresentacion
                     sessionManager.UserSessionUsuario = objUsuario;
                     FormsAuthentication.SetAuthCookie(LoginUser.UserName, true);
                     Response.Redirect("miCuenta.aspx");
-                    conectado = true;
                 }
                 else
                 {
