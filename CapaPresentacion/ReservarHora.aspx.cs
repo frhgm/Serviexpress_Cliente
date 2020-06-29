@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,12 +15,18 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LlenarBloques();
-            LlenarServicios();
-            LlenarEmpleados();
+            if (!IsPostBack)
+            {
+                LlenarBloques();
+                LlenarServicios();
+                LlenarEmpleados();
+                SqlCommand cmd;
+            }
+            
+            
         }
 
-        private void LlenarGridViewHorariosAtencion()
+        private void LlenarGridViewReservas()
         {
             if (txtRut.Text.Equals(string.Empty))//VALIDAR QUE NO EXISTA
             {
@@ -29,12 +37,6 @@ namespace CapaPresentacion
             List<Reserva> reservas = ReservaLN.getInstance().Listar(rut);
             grdHorariosAtencion.DataSource = reservas;
             grdHorariosAtencion.DataBind();
-            /* PRIMERO SE SELECCIONA HORA(bloque), LUEGO SELECCIONA EMPLEADO DISPONIBLE */
-            /* O */
-            /* PRIMERO SELECCIONAR EMPLEADO */
-            /* EMPLEADO YA EXISTE PARA SELECCIONAR */
-            /* SI RUT NO EXISTE, DESPLEGAR REGISTRO */
-            /* VALOR TIPO_CLIENTE POR DEFECTO COMO 1 */ /* COMBO BOX */
         }
         private Reserva GetEntity() //RECUPERAR DATOS INPUTS
         {
@@ -45,17 +47,16 @@ namespace CapaPresentacion
             objReserva.Modelo = txtModelo.Text;
             objReserva.Anno = Convert.ToInt32(txtAnno.Text);
             objReserva.Descripcion = txtDescripcion.Text;
-            objReserva.Rut_Cliente = int.Parse(txtRut.Text);
-            objReserva.Codigo_Servicio = int.Parse(ddlServicio.SelectedValue);
-            objReserva.Rut_Empleado = Convert.ToInt32(ddlEmpleado.SelectedValue);
-            objReserva.Bloque_Hora = Convert.ToInt32(ddlBloque.SelectedValue);
+            objReserva.Rut_Cliente = Convert.ToInt32(txtRut.Text);
+            objReserva.Codigo_Servicio = Convert.ToInt32(ddlServicio.SelectedValue);
+            objReserva.Rut_Empleado = Convert.ToInt32(ddlEmpleado.SelectedValue);//96715552
+            objReserva.Id_Horario =  Convert.ToInt32(ddlBloque.SelectedValue);
+            
             objReserva.Estado = true;
-            /* DateTime tempDate = Convert.ToDateTime("1/1/2010 12:10:15 PM", culture); */
-            //objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
 
             return objReserva;
         }
-
+        
         private void LlenarServicios()
         {
             List<Servicio> Lista = ServicioLN.getInstance().ListarServicios();
@@ -70,14 +71,41 @@ namespace CapaPresentacion
         
         private void LlenarBloques()
         {
-            //int rut = 96715552;
-            int rut = Convert.ToInt32(ddlEmpleado.SelectedItem.ToString());
+            /*
+            SqlCommand cmd;
+
+            SqlConnection conexion = new SqlConnection();
+            
+
+            SqlDataAdapter da;
+            
+            conexion.ConnectionString = "Data Source=DESKTOP-AKH9PI2\\SQLEXPRESS;Initial Catalog=SERVIEXPRESS;Integrated Security=True";
+
+            cmd =new SqlCommand ("SELECT hora_inicio,hora_final,id_horario FROM bloque_hora order by hora_inicio;", conexion);
+
+            da = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+
+            {
+
+                ddlBloque.Items.Add(ds.Tables[0].Rows[i][0] + "--" + ds.Tables[0].Rows[i][1]);     
+
+            }
+            ddlBloque.DataBind();
+            ddlBloque.Items.Insert(0, new ListItem(" Seleccione horario", "0"));
+            */
+            int rut = 96715552;
             List<BloqueHora> Lista = BloqueLN.getInstance().ListarBloques(rut);
             ddlBloque.DataSource = Lista;
             ddlBloque.DataValueField = "Id_Horario";
             ddlBloque.DataTextField = "Hora_Inicio";
             ddlBloque.DataBind();
-            ddlBloque.Items.Insert(0, new ListItem(" Seleccione horario", "0"));
+            ddlBloque.Items.Insert(0, new ListItem(" Seleccione bloque", "0"));
         }
 
         private void LlenarEmpleados()
@@ -110,24 +138,9 @@ namespace CapaPresentacion
             }
         }
         
-/*
-        private void LlenarBloque()
-        {
-            if (txtRut.Text.Equals(string.Empty))
-            {
-                Response.Write("<script>alert('No ha ingresado un rut valido')</script>");
-                return;
-            }
-            int rut = Convert.ToInt32(txtRut.Text);
-            List<BloqueHora> Bloques = BloqueLN.getInstance().Listar(rut);
-            grdBloque.DataSource = Bloques;
-            
-            grdBloque.DataBind();
-        }
-*/
         protected void btnListarReserva_Click(object sender, EventArgs e)
         {
-            LlenarGridViewHorariosAtencion();
+            LlenarGridViewReservas();
             
         }
 

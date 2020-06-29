@@ -43,19 +43,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-/*
-        public Usuario BuscarUsuario(String nroDocumento)
-        {
-            try
-            {
-                return UsuarioDAO.getInstance().BuscarUsuario(nroDocumento);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-        */
+
 
         public List<Usuario> ListarUsuarios()
         {

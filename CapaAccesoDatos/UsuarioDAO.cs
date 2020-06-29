@@ -58,50 +58,6 @@ namespace CapaAccesoDatos
             }
             return objUsuario;
         }
-/*
-        public Cliente BuscarUsuario(String nroDocumento)
-        {
-            SqlConnection con = null;
-            SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            Usuario objUsuario = new Usuario();
-
-            try
-            {
-                con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spBuscarEmpleado", con);
-                cmd.Parameters.AddWithValue("@prmNroDocumento", nroDocumento);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                con.Open();
-
-                dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    objCliente.Rut = Convert.ToInt32(dr["rut_cliente"].ToString());
-                    objCliente.Nombre = dr["nombre_cliente"].ToString();
-                    objCliente.Apellido = dr["apellido_cliente"].ToString();
-                    objCliente.Direccion = dr["direccion"].ToString();
-                    objCliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
-                    objCliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
-                    objCliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
-                    objCliente.Id_Usuario = Convert.ToInt32(dr["usuario_id_usuario"].ToString());
-                }
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return objCliente;
-        }
-        */
 
         public List<Usuario> ListarUsuarios()
         {

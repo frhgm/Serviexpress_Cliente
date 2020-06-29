@@ -26,7 +26,7 @@
                             <asp:Calendar runat="server" ID="dpFechaReserva"></asp:Calendar>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group justify-content-center">
                             <asp:Label runat="server">INGRESE PATENTE</asp:Label>
                             <asp:TextBox runat="server" ID="txtPatente" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -52,15 +52,17 @@
                         </div>
                         <div class="form-group">
                             <label>SELECCIONE SERVICIO</label>
-                            <asp:DropDownList ID="ddlServicio" CssClass="form-control" runat="server" AppendDataBoundItems="True"> </asp:DropDownList>
+                            <asp:DropDownList ID="ddlServicio" CssClass="form-control" runat="server"> </asp:DropDownList>
+                            
+                           <%-- <asp:TextBox runat="server" ID="txtServicio" CssClass="form-control"> </asp:TextBox>--%>
                         </div>
                         <div class="form-group">
                             <label>SELECCIONE EMPLEADO</label>
-                            <asp:DropDownList ID="ddlEmpleado" CssClass="form-control" runat="server" AppendDataBoundItems="True"> </asp:DropDownList>
+                            <asp:DropDownList ID="ddlEmpleado" CssClass="form-control" runat="server"> </asp:DropDownList>
                         </div>
                         <div class="form-group">
                             <label>SELECCIONE BLOQUE HORARIO</label>
-                            <asp:DropDownList ID="ddlBloque" CssClass="form-control" runat="server" AppendDataBoundItems="True"> </asp:DropDownList>
+                            <asp:DropDownList ID="ddlBloque" CssClass="form-control" runat="server"> </asp:DropDownList>
                         </div>
                     </div>
                 </div>
