@@ -40,15 +40,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtApellido;
         
         /// <summary>
-        /// txtTipoCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify, move the field declaration from the designer file to a code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoCliente;
-        
-        /// <summary>
         /// txtCelular control.
         /// </summary>
         /// <remarks>
@@ -91,7 +82,7 @@ namespace CapaPresentacion {
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar dpFechaNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox dpFechaNacimiento;
         
         /// <summary>
         /// btnRegistrar control.

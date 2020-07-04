@@ -31,13 +31,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtRut;
         
         /// <summary>
+        /// txtReserva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReserva;
+        
+        /// <summary>
         /// dpFechaReserva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar dpFechaReserva;
+        protected global::System.Web.UI.WebControls.TextBox dpFechaReserva;
         
         /// <summary>
         /// txtPatente control.
@@ -85,15 +94,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
-        /// ddlServicio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify, move the field declaration from the designer file to a code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlServicio;
-        
-        /// <summary>
         /// ddlEmpleado control.
         /// </summary>
         /// <remarks>
@@ -101,6 +101,15 @@ namespace CapaPresentacion {
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpleado;
+        
+        /// <summary>
+        /// ddlServicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlServicio;
         
         /// <summary>
         /// ddlBloque control.
@@ -139,13 +148,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.Button btnAgendarReserva;
         
         /// <summary>
-        /// idPaciente control.
+        /// btnCancelarReserva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idPaciente;
+        protected global::System.Web.UI.WebControls.Button btnCancelarReserva;
         
         /// <summary>
         /// Master property.

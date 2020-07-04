@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using CapaEntidades;
 
 namespace CapaAccesoDatos
@@ -9,22 +10,26 @@ namespace CapaAccesoDatos
     public class ReservaDAO
     {
         #region "PATRON SINGLETON"
+
         private static ReservaDAO daoReserva = null;
-        private ReservaDAO() { }
+
+        private ReservaDAO()
+        {
+        }
+
         public static ReservaDAO getInstance()
         {
-            if (daoReserva == null)
-            {
-                daoReserva = new ReservaDAO();
-            }
+            if (daoReserva == null) daoReserva = new ReservaDAO();
             return daoReserva;
         }
+
         #endregion
+
         public bool AgendarReserva(Reserva objReserva)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
-            bool response = false;
+            var response = false;
 
             try
             {
@@ -43,12 +48,11 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmRutEmpleado", objReserva.Rut_Empleado);
                 cmd.Parameters.AddWithValue("@prmId_Horario", objReserva.Id_Horario);
                 cmd.Parameters.AddWithValue("@prmEstado", objReserva.Estado);
-                
+
 
                 con.Open();
-                int filas = cmd.ExecuteNonQuery();
+                var filas = cmd.ExecuteNonQuery();
                 if (filas > 0) response = true;
-
             }
             catch (Exception ex)
             {
@@ -59,11 +63,13 @@ namespace CapaAccesoDatos
             {
                 con.Close();
             }
+
             return response;
         }
+
         public List<Reserva> Listar(int rut)
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<Reserva> Lista = null;
@@ -83,20 +89,21 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    Reserva objReserva = new Reserva();
+                    var objReserva = new Reserva();
                     //DATOS RESERVA
                     objReserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
+                    
                     objReserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
+                    
                     objReserva.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
                     //DATOS CLIENTE
                     objReserva.Rut_Cliente = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
                     //DATOS BLOQUE
                     objReserva.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
                     objReserva.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
-                    
+
                     Lista.Add(objReserva);
                 }
-
             }
             catch (Exception ex)
             {
@@ -106,9 +113,8 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return Lista;
         }
-        
-        
     }
 }

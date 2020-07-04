@@ -122,7 +122,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="js\CRUDUsuario.js" />
-    <Content Include="js\reserva.js" />
+    <Content Include="js\script.js" />
     <Content Include="libman.json" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.css.map" />
     <Content Include="lib\twitter-bootstrap\css\bootstrap-grid.min.css.map" />
@@ -302,6 +302,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaAccesoDatos\CapaAccesoDatos.csproj">
+      <Project>{a842577a-e53e-44a8-8549-cbb3cb6358dd}</Project>
+      <Name>CapaAccesoDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
       <Project>{60412DED-D446-42A6-887F-3D9A0D5106CE}</Project>
       <Name>CapaEntidades</Name>

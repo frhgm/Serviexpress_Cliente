@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaAccesoDatos;
 using CapaEntidades;
 using CapaLogicaNegocio;
 
@@ -17,12 +18,9 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                LlenarBloques();
-                LlenarServicios();
                 LlenarEmpleados();
-                SqlCommand cmd;
+                Response.Write("<script>alert('Recuerde ingresar su rut al crear una reserva ya que lo llamaremos para confirmarla.')</script>");
             }
-            
             
         }
 
@@ -38,10 +36,12 @@ namespace CapaPresentacion
             grdHorariosAtencion.DataSource = reservas;
             grdHorariosAtencion.DataBind();
         }
-        private Reserva GetEntity() //RECUPERAR DATOS INPUTS
+        private Reserva GetEntity() //RECUPERAR DATOS
         {
             Reserva objReserva = new Reserva();
-            objReserva.Fecha = dpFechaReserva.SelectedDate;
+            
+            
+            objReserva.Fecha = Convert.ToDateTime(dpFechaReserva.Text);
             objReserva.Patente = txtPatente.Text;
             objReserva.Marca = txtMarca.Text;
             objReserva.Modelo = txtModelo.Text;
@@ -52,60 +52,10 @@ namespace CapaPresentacion
             objReserva.Rut_Empleado = Convert.ToInt32(ddlEmpleado.SelectedValue);//96715552
             objReserva.Id_Horario =  Convert.ToInt32(ddlBloque.SelectedValue);
             
+            //define si esta vigente
             objReserva.Estado = true;
-
+            
             return objReserva;
-        }
-        
-        private void LlenarServicios()
-        {
-            List<Servicio> Lista = ServicioLN.getInstance().ListarServicios();
-
-            ddlServicio.DataSource = Lista;
-            ddlServicio.DataValueField = "Codigo_Servicio";
-            ddlServicio.DataTextField = "Nombre";
-            ddlServicio.DataBind();
-            ddlServicio.Items.Insert(0, new ListItem(" Seleccione servicio", "0"));
-        }
-        
-        
-        private void LlenarBloques()
-        {
-            /*
-            SqlCommand cmd;
-
-            SqlConnection conexion = new SqlConnection();
-            
-
-            SqlDataAdapter da;
-            
-            conexion.ConnectionString = "Data Source=DESKTOP-AKH9PI2\\SQLEXPRESS;Initial Catalog=SERVIEXPRESS;Integrated Security=True";
-
-            cmd =new SqlCommand ("SELECT hora_inicio,hora_final,id_horario FROM bloque_hora order by hora_inicio;", conexion);
-
-            da = new SqlDataAdapter(cmd);
-
-            DataSet ds = new DataSet();
-
-            da.Fill(ds);
-
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-
-            {
-
-                ddlBloque.Items.Add(ds.Tables[0].Rows[i][0] + "--" + ds.Tables[0].Rows[i][1]);     
-
-            }
-            ddlBloque.DataBind();
-            ddlBloque.Items.Insert(0, new ListItem(" Seleccione horario", "0"));
-            */
-            int rut = 96715552;
-            List<BloqueHora> Lista = BloqueLN.getInstance().ListarBloques(rut);
-            ddlBloque.DataSource = Lista;
-            ddlBloque.DataValueField = "Id_Horario";
-            ddlBloque.DataTextField = "Hora_Inicio";
-            ddlBloque.DataBind();
-            ddlBloque.Items.Insert(0, new ListItem(" Seleccione bloque", "0"));
         }
 
         private void LlenarEmpleados()
@@ -116,9 +66,38 @@ namespace CapaPresentacion
             ddlEmpleado.DataValueField = "Rut";
             ddlEmpleado.DataTextField = "Nombre";
             ddlEmpleado.DataBind();
-            ddlEmpleado.Items.Insert(0, new ListItem(" Seleccione empleado", "0"));
+            ddlEmpleado.Items.Insert(0, new ListItem(" Seleccione empleado"));
         }
 
+        private void LlenarServicios()
+        {
+            List<Servicio> Lista = ServicioLN.getInstance().ListarServicios();
+
+            int codigo = Convert.ToInt32(ddlEmpleado.SelectedValue);
+            ddlServicio.DataSource = Lista;
+            ddlServicio.DataValueField = "Codigo_Servicio";
+            ddlServicio.DataTextField = "Nombre";
+            ddlServicio.DataBind();
+            ddlServicio.Items.Insert(0, new ListItem(" Seleccione servicio"));
+        }
+        
+
+        private void LlenarBloque()
+        {
+            int rut = Convert.ToInt32(ddlEmpleado.SelectedValue);
+            DateTime fecha = Convert.ToDateTime(dpFechaReserva.Text);
+            
+            List<BloqueHora> Lista = BloqueLN.getInstance().ListarBloques(rut, fecha);
+                
+            ddlBloque.DataSource = Lista;
+            ddlBloque.DataValueField = "Id_Horario";
+            ddlBloque.DataTextField = "Bloque";
+            ddlBloque.DataBind();
+            ddlBloque.Items.Insert(0, new ListItem(" Seleccione bloque"));
+        }
+
+        
+        
         private void Reserva()
         {
             // Registro del cliente
@@ -129,24 +108,75 @@ namespace CapaPresentacion
             bool response = ReservaLN.getInstance().AgendarReserva(objReserva);
             if (response)
             {
-                Response.Write("<script>alert('REGISTRO CORRECTO.')</script>");
+                Response.Write("<script>alert('Reserva agendada correctamente.')</script>");
 
             }
             else
             {
-                Response.Write("<script>alert('REGISTRO INCORRECTO.')</script>");
+                Response.Write("<script>alert('Revise los datos ingresados por favor, es posible que haya ingresado uno incorrecto')</script>");
             }
+        }
+
+        private void CancelarReserva()
+        {
+            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<Reserva> Lista = null;
+            int rut = Convert.ToInt32(txtRut.Text);
+            int reserva = Convert.ToInt32(txtReserva.Text);
+
+            try
+            {
+                cmd = new SqlCommand("[spCancelarReserva]", conexion);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                cmd.Parameters.AddWithValue("@prmReserva", reserva);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Response.Write("<script>alert('Reserva Numero: " + reserva + " cancelada correctamente.')</script>");
+                conexion.Close();
+            }
+        }
+        
+        private void ReservaExitosa()
+        {
+            
         }
         
         protected void btnListarReserva_Click(object sender, EventArgs e)
         {
             LlenarGridViewReservas();
-            
         }
+       
 
         protected void btnAgendarReserva_Click(object sender, EventArgs e)
         {
             Reserva();
+        }
+        
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            CancelarReserva();
+        }
+        
+        //busca si se ha cambiado la seleccion de empleado y actualiza ddlServicios
+        protected void SeleccionEmpleado(object sender, EventArgs e)
+        {
+            LlenarServicios();
+        }
+        //busca si se ha cambiado la seleccion de servicio y actualiza ddlBloque
+        protected void SeleccionServicio(object sender, EventArgs e)
+        {
+            LlenarBloque();
         }
     }
 }

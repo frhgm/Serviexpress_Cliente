@@ -48,11 +48,11 @@ namespace CapaLogicaNegocio
             }
         }
         
-        public List<BloqueHora> ListarBloques(int rut)
+        public List<BloqueHora> ListarBloques(int rut, DateTime fecha)
         {
             try
             {
-                return BloqueDAO.getInstance().ListarBloques(rut);
+                return BloqueDAO.getInstance().ListarBloques(rut, fecha);
             }
             catch (Exception ex)
             {

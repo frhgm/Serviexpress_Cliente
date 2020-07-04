@@ -3,16 +3,16 @@
 $("#btnBuscar").on("click", function (e) {
   e.preventDefault();
 
-  var dni = $("#txtDNI").val();
+  var rut = $("#txtRut").val();
 
-  searchPacienteDni(dni);
+  searchPacienteDni(rut);
 });
 
-function searchPacienteDni(dni) {
-  var data = JSON.stringify({ dni: dni });
+function searchPacienteDni(rut) {
+  var data = JSON.stringify({ rut: rut });
   $.ajax({
     type: "POST",
-    url: "GestionarReservaCitas.aspx/BuscarPacienteDNI",
+    url: "ReservarHora.aspx/",
     data: data,
     contentType: "application/json; charset=utf-8",
     error: function (xhr, ajaxOptions, thrownError) {
@@ -37,6 +37,7 @@ function llenarDatosPaciente(obj) {
   $("#txtEdad").val(obj.Edad);
   $("#txtSexo").val(obj.Sexo == "M" ? "Masculino" : "Femenino");
 }
+*/
 
 function limpiarDatosPaciente() {
   $("#idPaciente").val("0");
@@ -46,17 +47,8 @@ function limpiarDatosPaciente() {
   $("#txtEdad").val("");
   $("#txtSexo").val("");
 }
-/*
-function ocultarMostrar() {
-  var x = document.getElementById("registroCliente");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-*/
-function imprimirFecha() {
-  var x = document.getElementById("dpFechaNacimiento").value;
+
+function fijarFecha() {
+  var x = document.getElementById("dpFechaReserva").value;
   document.getElementById("labelNacimiento").innerHTML = x;
 }

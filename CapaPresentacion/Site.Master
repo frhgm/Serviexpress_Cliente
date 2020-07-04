@@ -44,9 +44,6 @@
                 <li class="nav-item">
                     <a href="Registro.aspx" class="nav-link">Registro</a>
                 </li>
-                <li class="nav-item">
-                    <a href="InicioSesion.aspx" class="nav-link">Login</a>
-                </li>
             </ul>
         </div>
     </nav>

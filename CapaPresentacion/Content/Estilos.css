@@ -1,4 +1,9 @@
-﻿.home{
+﻿html, body {
+    font-family: 'Source Sans Pro', "Helvetica", Helvetica, Arial, sans-serif;
+    background-color: var(--light);
+}
+
+.home{
     margin-top: 0.5em;
 }
 h2{
@@ -16,6 +21,8 @@ h2{
     border-radius: 0px;
     padding: 0;
 }
+
+
 
 .navbar{
     border-radius: 0px;
@@ -37,13 +44,8 @@ h2{
     color: #848B9F;
 }
 
-body{
-    background-color: var(--light);
-}
 
-html, body {
-    font-family: 'Source Sans Pro', "Helvetica", Helvetica, Arial, sans-serif;
-}
+
 
 .caja{
     border-top-style: solid;

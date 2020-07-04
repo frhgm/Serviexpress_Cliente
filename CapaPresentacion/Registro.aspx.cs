@@ -13,33 +13,34 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+            }
         }
         
         private Cliente GetEntity() //RECUPERAR DATOS INPUTS
         {
             Cliente objCliente = new Cliente();
-            objCliente.Rut = Convert.ToInt32(txtRut.Text);
-            objCliente.Nombre = txtNombre.Text;
-            objCliente.Apellido = txtApellido.Text;
-            objCliente.Telefono = Convert.ToInt32(txtCelular.Text);
-            /* DateTime tempDate = Convert.ToDateTime("1/1/2010 12:10:15 PM", culture); */
-            
-            
-
             if (txtFijo.Text == String.Empty)
             {
                 objCliente.Telefono_Adicional = 0;
+                objCliente.Nombre = txtNombre.Text;
+                objCliente.Apellido = txtApellido.Text;
+                objCliente.Telefono = Convert.ToInt32(txtCelular.Text);
                 objCliente.Direccion = txtDireccion.Text;
-                objCliente.Fecha_Nacimiento = dpFechaNacimiento.SelectedDate;
-                objCliente.Tipo_Cliente = Convert.ToBoolean(txtTipoCliente.Text);
+                objCliente.Fecha_Nacimiento = Convert.ToDateTime(dpFechaNacimiento.Text);
+                objCliente.Tipo_Cliente = true;
             }
             else
             {
+                objCliente.Rut = Convert.ToInt32(txtRut.Text);
+                objCliente.Nombre = txtNombre.Text;
+                objCliente.Apellido = txtApellido.Text;
+                objCliente.Telefono = Convert.ToInt32(txtCelular.Text);
                 objCliente.Telefono_Adicional = Convert.ToInt32(txtFijo.Text);
                 objCliente.Direccion = txtDireccion.Text;
-                //objCliente.Fecha_Nacimiento = Convert.ToDateTime(txtFechaNacimiento.Text);
-                objCliente.Tipo_Cliente = Convert.ToBoolean(txtTipoCliente.Text);
+                objCliente.Fecha_Nacimiento = Convert.ToDateTime(dpFechaNacimiento.Text);
+                objCliente.Tipo_Cliente = true;
             }
 
 
@@ -58,7 +59,7 @@ namespace CapaPresentacion
             if (response)
             {
                 Response.Write("<script>alert('REGISTRO CORRECTO.')</script>");
-
+                Response.Redirect("ReservarHora.aspx");
             }
             else
             {

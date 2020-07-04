@@ -84,29 +84,6 @@ function updateDataAjax() {
     },
   });
 }
-
-function deleteDataAjax(data) {
-  var obj = JSON.stringify({ id: JSON.stringify(data) });
-
-  $.ajax({
-    type: "POST",
-    url: "GestionarPaciente.aspx/EliminarDatosPaciente",
-    data: obj,
-    dataType: "json",
-    contentType: "application/json; charset=utf-8",
-    error: function (xhr, ajaxOptions, thrownError) {
-      console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-    },
-    success: function (response) {
-      if (response.d) {
-        alert("Registro eliminado de manera correcta.");
-      } else {
-        alert("No se pudo eliminar el registro.");
-      }
-    },
-  });
-}
-
 // evento click para boton actualizar
 $(document).on("click", ".btn-edit", function (e) {
   e.preventDefault();

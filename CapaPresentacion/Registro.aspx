@@ -24,16 +24,12 @@
                     <label for="txtApellido">INGRESE APELLIDO</label>
                     <asp:TextBox ID="txtApellido" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                 </div>
-                <div class="form-group">
-                    <label for="txtTipoCliente">TIPO CLIENTE</label><!--SELECT-->
-                    <asp:TextBox ID="txtTipoCliente" runat="server" Text="" CssClass="form-control"></asp:TextBox>
-                </div>
             </div>
 
             <div class="col-md-6 caja">
                 <div class="form-group">
                     <label for="txtCelular">TELEFONO CELULAR</label>
-                    <asp:TextBox ID="txtCelular" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtCelular" runat="server" Text="" MaxLength="9" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <label for="txtFijo">TELEFONO FIJO</label>
@@ -45,25 +41,15 @@
                 </div>
                 <div class="form-group">
                     <asp:Label for="dpFechaNacimiento" ID="labelNacimiento" runat="server">FECHA NACIMIENTO</asp:Label>
-                    <br>
-                    <!--<input type="date" id="a" class="form-control">-->
-                    <asp:Calendar ID="dpFechaNacimiento" runat="server"
-                                  SelectionMode="Day"
-                                  ShowGridLines="True">
-
-                        <SelectedDayStyle BackColor="Yellow"
-                                          ForeColor="Red">
-                        </SelectedDayStyle>
-                    
-                    </asp:Calendar>
-
+                    <asp:TextBox TextMode="Date" runat="server" Text="1986-07-31" CssClass="form-control" ID="dpFechaNacimiento"></asp:TextBox>
                 </div>
 
             </div>
         </div>
         <div class="row">
-            <div class="text-center">
-                <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Width="200px" Text="Registrar" OnClick="btnRegistrar_Click"/>
+            <div class="offset-md-4 col-md-4 offset-md-4">
+                <br>
+                <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary btn-block" Text="Registrar" OnClick="btnRegistrar_Click"/>
             </div>
         </div>
         <br/>
