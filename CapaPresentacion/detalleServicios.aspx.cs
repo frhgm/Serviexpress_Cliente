@@ -7,18 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
-    public partial class detalleServicios : System.Web.UI.Page
+    public partial class detalleServicios : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ReservarHora.aspx");
         }
-
-        
     }
 }

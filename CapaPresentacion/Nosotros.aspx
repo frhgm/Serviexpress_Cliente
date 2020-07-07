@@ -1,18 +1,37 @@
 ﻿<%@ Page Title="Nosotros" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Nosotros.aspx.cs" Inherits="CapaPresentacion.Nosotros" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <section class="content-header">
-        <h1 style="text-align: center">NOSOTROS</h1>
+        <h3 style="text-align: center">Nosotros</h3>
     </section>
-    
-    <div class="cajaDetalleServicio">
-        <div class="divDetalleServicio" style="position:absolute;left:715px;">
-            <h4>IMAGEN SERVICIO</h4>
-        </div>
-
-        <div id="sampleText" style="position: absolute; left: 635px; top:300px; width:400px;">
-            <p>Nóbis persíus ex mea. Ex nusquam póstulant vím, cibo añcillae consetetur te usu, est et erat prima. Ex odio suscipit pri. Hís eu wisi porró fabulas, at eum habemus fabellas invidúnt, erat accumsañ imperdiet cúm nó. Pro cibó recteque explicari eú, ignota doctus dolorum has éx.</p>
-            <p>Méa ex élitr decoré définitionem. Sit cétero aperíri ut. Ei sit tamqúam melióre, reque simul nusqúam et per. In integre periculis assueverit nec. Id qúem velít nominati eam.</p>
-            <p>Sit íd choro volumús. Apériri recusabo te quí, possit alterúm argumentum pró no. Eám né sonet dicúnt senteñtiáe. Harum aliquip ea mei, eos te móvet invidunt perpetua. Solum nullám épicurei eú est, te ludus doloré accusam duo. Vix te ullúm possit, éu sed regíone euripidís.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <img src="Content/logo.png" alt="Logo taller" class="rounded mx-auto d-block " style="width: 40%;">
+            <h2 class="text-center">Nuestras sucursales</h2>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Los leones</h3>
+            <p>Dirección: Los Leones N°133</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Santiago</h3>
+            <p>Dirección: Avenida Manuel Antonio Matta N°781</p>
+        </div>
+    </div>
+    <br>
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Maipú</h3>
+            <p>Dirección: A Rinconada 2000</p>
+        </div>
+        <div class="col-md-6">
+            <h3>La Reina</h3>
+            <p>Dirección: Las Perdices N°591</p>
+        </div>
+    </div>
+
+
 </asp:Content>

@@ -9,22 +9,25 @@ namespace CapaAccesoDatos
     public class ServicioDAO
     {
         #region "PATRON SINGLETON"
+
         private static ServicioDAO daoServicio = null;
-        private ServicioDAO() { }
+
+        private ServicioDAO()
+        {
+        }
+
         public static ServicioDAO getInstance()
         {
-            if (daoServicio == null)
-            {
-                daoServicio = new ServicioDAO();
-            }
+            if (daoServicio == null) daoServicio = new ServicioDAO();
             return daoServicio;
         }
+
         #endregion
-        
-        
+
+
         public List<Servicio> ListarServicios()
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<Servicio> Lista = null;
@@ -43,13 +46,12 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    Servicio objServicio = new Servicio();
+                    var objServicio = new Servicio();
                     objServicio.Nombre = dr["SERVICIO"].ToString();
                     objServicio.Codigo_Servicio = Convert.ToInt32(dr["cod_servicio"]);
 
                     Lista.Add(objServicio);
                 }
-
             }
             catch (Exception ex)
             {
@@ -59,6 +61,7 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return Lista;
         }
     }

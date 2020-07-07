@@ -11,29 +11,25 @@ using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
-    public partial class InicioSesion : System.Web.UI.Page
+    public partial class InicioSesion : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                Session["UserSessionId"] = null;
-            }
+            if (!Page.IsPostBack) Session["UserSessionId"] = null;
         }
 
         protected void LoginUser_Authenticate(object sender, AuthenticateEventArgs e)
         {
-
-            bool conectado = false;
-            bool auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
+            var conectado = false;
+            var auth = Membership.ValidateUser(LoginUser.UserName, LoginUser.Password);
 
             if (auth)
             {
-                Usuario objUsuario = UsuarioLN.getInstance().AccesoSistema(LoginUser.UserName, LoginUser.Password);
+                var objUsuario = UsuarioLN.getInstance().AccesoSistema(LoginUser.UserName, LoginUser.Password);
 
                 if (objUsuario != null)
                 {
-                    SessionManager sessionManager = new SessionManager(Session);
+                    var sessionManager = new SessionManager(Session);
                     //SessionManager.UserSessionId = objEmpleado.ID.ToString();
                     sessionManager.UserSessionUsuario = objUsuario;
                     FormsAuthentication.SetAuthCookie(LoginUser.UserName, true);

@@ -12,14 +12,13 @@
     <webopt:bundlereference runat="server" path="~/Content/css"/>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link href="lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    
+
     <link href="Content/Estilos.css" rel="stylesheet"/>
 </head>
 <body>
 <form class="form1" runat="server">
-    <!--<asp:ScriptManager runat="server">
-            
-    </asp:ScriptManager>-->
+    <asp:ScriptManager ID="scriptManager" runat="server">
+    </asp:ScriptManager>
 
     <nav class="navbar navbar-expand-sm fixed-top">
         <a class="navbar-brand" href="/Home.aspx">SERVIEXPRESS</a>
@@ -37,6 +36,9 @@
                 <li class="nav-item">
                     <a href="Contacto.aspx" class="nav-link">Contacto</a>
                 </li>
+                <li class="nav-item">
+                    <a href="ReservarHora.aspx" class="nav-link">Reserva</a>
+                </li>
             </ul>
 
 
@@ -48,6 +50,8 @@
         </div>
     </nav>
     <div class="container body-content">
+
+
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
         <hr/>
@@ -60,9 +64,11 @@
     </div>
 
 </form>
+
+<script src="js/script.js"></script>
 <script src="lib/twitter-bootstrap/js/jquery-3.5.1.js"></script>
 <script src="lib/twitter-bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    
+
 </body>
 
 

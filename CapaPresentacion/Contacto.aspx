@@ -2,22 +2,20 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <section class="content-header">
-        <h1 style="text-align: center;">Contacto</h1>
+        <h3 style="text-align: center;">Contacto</h3>
     </section>
-    <div class="cajaDetalleServicio" style="height:550px;">
-        <div class="divDetalleServicio" style="position:absolute;left:268px;">
-            <h4>IMAGEN SERVICIO</h4>
-            <div id="sampleText" style="position:absolute;top:-3px;left:420px;">
-                <p>Oratío dolorem sed id. Inañi ñomiñatí assueverit mea in, in enim hárum clita per.</p>
-                <p>Vidít princípes incorrupte méi in. Pér tibique voluptatum iñterpretaris et</p>
-                <p>Cu mél civibús copiosae fórensibus, ex vocent vocibus demócritum sed</p>
-            </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <img src="Content/logo.png" alt="Logo taller" class="rounded mx-auto d-block " style="width: 40%;">
         </div>
-        
     </div>
-    <div class="panel-footer">
-        <label>TELEFONO: +56912345678</label><br />
-        <label>MAIL: mail@mail.com</label>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h4>Telefono: +56912345678</h4>
+            <address>Mail: servicio@serviexpress.cl</address>
+        </div>
+
     </div>
-   </asp:Content>
+</asp:Content>

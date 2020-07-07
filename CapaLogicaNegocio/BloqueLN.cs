@@ -47,7 +47,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-        
+
         public List<BloqueHora> ListarBloques(int rut, DateTime fecha)
         {
             try

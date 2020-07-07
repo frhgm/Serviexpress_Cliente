@@ -6,8 +6,8 @@
     <div id="miCuenta">
         <h2>Mis servicios agendados</h2>
         <div class="row">
-            <br />
-            <br />
+            <br/>
+            <br/>
             <div class="col-md-4">
                 <div class="misServicios">
                     <a href="ReservarHora.aspx">Cambio de aceite</a>
@@ -16,8 +16,8 @@
                     <p>Fecha:15-05-2021</p>
                 </div>
             </div>
-        
-        
+
+
             <div class="col-md-4">
                 <div class="misServicios">
                     <a href="ReservarHora.aspx">Reemplazo filtro de aceite</a>

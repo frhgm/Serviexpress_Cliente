@@ -6,8 +6,8 @@
     <div class="cajaDetalleServicio">
         <h2>Mis servicios agendados</h2>
         <div class="row">
-            <br />
-            <br />
+            <br/>
+            <br/>
             <div class="col-md-12">
                 <p id="tipoServicio">Cambio de aceite</p>
                 <div class="divDetalleServicio">
@@ -18,9 +18,9 @@
                     <p>Vidít princípes incorrupte méi in. Pér tibique voluptatum iñterpretaris et</p>
                     <p>Cu mél civibús copiosae fórensibus, ex vocent vocibus demócritum sed</p>
                 </div>
-                <asp:Button ID="btnReservar" runat="server" Text="Reservar hora" CssClass="btn btn-primary btn-lg btn-Reservar" OnClick="btnReservar_Click" />
+                <asp:Button ID="btnReservar" runat="server" Text="Reservar hora" CssClass="btn btn-primary btn-lg btn-Reservar" OnClick="btnReservar_Click"/>
             </div>
-            
+
         </div>
     </div>
 </asp:Content>

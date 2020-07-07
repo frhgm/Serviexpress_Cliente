@@ -2,9 +2,9 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <img src="Content/taller.jpg" class="fondo" alt="">
+    <img src="Content/taller.jpg" class="fondo" alt="Imagen taller">
 
-    <div class="row home">
+    <div class="row home divServicio">
         <div class="col-md-3">
             <a>Cambio de aceite</a>
             <p>

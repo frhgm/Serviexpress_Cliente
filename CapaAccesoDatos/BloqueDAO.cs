@@ -9,20 +9,24 @@ namespace CapaAccesoDatos
     public class BloqueDAO
     {
         #region "PATRON SINGLETON"
+
         private static BloqueDAO daoBloque = null;
-        private BloqueDAO() { }
+
+        private BloqueDAO()
+        {
+        }
+
         public static BloqueDAO getInstance()
         {
-            if (daoBloque == null)
-            {
-                daoBloque = new BloqueDAO();
-            }
+            if (daoBloque == null) daoBloque = new BloqueDAO();
             return daoBloque;
         }
+
         #endregion
+
         public List<BloqueHora> ListarReservas(int rut)
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<BloqueHora> Lista = null;
@@ -42,13 +46,12 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    BloqueHora objHora = new BloqueHora();
+                    var objHora = new BloqueHora();
                     objHora.Id_Horario = Convert.ToInt32(dr["id_horario"].ToString());
                     objHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
 
                     Lista.Add(objHora);
                 }
-
             }
             catch (Exception ex)
             {
@@ -58,12 +61,13 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return Lista;
         }
-        
+
         public List<BloqueHora> ListarBloques(int rut, DateTime fecha)
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            var conexion = Conexion.getInstance().ConexionBD();
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
@@ -86,13 +90,12 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    BloqueHora objBloqueHora = new BloqueHora();
+                    var objBloqueHora = new BloqueHora();
                     objBloqueHora.Id_Horario = Convert.ToInt32(dr["id_horario"].ToString());
                     objBloqueHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
                     objBloqueHora.Bloque = dr["BLOQUE"].ToString();
                     Lista.Add(objBloqueHora);
                 }
-
             }
             catch (Exception ex)
             {
@@ -102,6 +105,7 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return Lista;
         }
     }

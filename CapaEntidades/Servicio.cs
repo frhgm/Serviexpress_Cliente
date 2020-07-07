@@ -13,7 +13,6 @@ namespace CapaEntidades
 
         public Servicio()
         {
-            
         }
     }
 }

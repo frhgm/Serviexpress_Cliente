@@ -8,19 +8,22 @@ namespace CapaLogicaNegocio
     public class UsuarioLN
     {
         #region "PATRON SINGLETON"
+
         private static UsuarioLN objUsuario = null;
-        private UsuarioLN() { }
+
+        private UsuarioLN()
+        {
+        }
+
         public static UsuarioLN getInstance()
         {
-            if (objUsuario == null)
-            {
-                objUsuario = new UsuarioLN();
-            }
+            if (objUsuario == null) objUsuario = new UsuarioLN();
             return objUsuario;
         }
+
         #endregion
 
-        public Usuario AccesoSistema(String user, String pass)
+        public Usuario AccesoSistema(string user, string pass)
         {
             try
             {
@@ -31,7 +34,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-        
+
         public bool RegistrarUsuario(Usuario objUsuario)
         {
             try

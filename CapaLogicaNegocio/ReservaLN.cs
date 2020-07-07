@@ -8,17 +8,21 @@ namespace CapaLogicaNegocio
     public class ReservaLN
     {
         #region "PATRON SINGLETON"
+
         private static ReservaLN reserva = null;
-        private ReservaLN() { }
+
+        private ReservaLN()
+        {
+        }
+
         public static ReservaLN getInstance()
         {
-            if (reserva == null)
-            {
-                reserva = new ReservaLN();
-            }
+            if (reserva == null) reserva = new ReservaLN();
             return reserva;
         }
+
         #endregion
+
         public bool AgendarReserva(Reserva objReserva)
         {
             try
@@ -30,6 +34,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+
         public List<Reserva> Listar(int rut)
         {
             try
@@ -42,6 +47,20 @@ namespace CapaLogicaNegocio
             }
         }
 
+        /*
         
+        public Reserva BuscarClienteReserva(int rut)
+        {
+            try 
+            {
+                return ReservaDAO.getInstance().BuscarClienteReserva(rut);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        */
     }
 }

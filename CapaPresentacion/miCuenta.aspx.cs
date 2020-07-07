@@ -7,12 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
-    public partial class miCuenta : System.Web.UI.Page
+    public partial class miCuenta : Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
     }
 }

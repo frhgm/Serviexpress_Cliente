@@ -9,19 +9,22 @@ namespace CapaAccesoDatos
     public class UsuarioDAO
     {
         #region "PATRON SINGLETON"
+
         private static UsuarioDAO daoUsuario = null;
-        private UsuarioDAO() { }
+
+        private UsuarioDAO()
+        {
+        }
+
         public static UsuarioDAO getInstance()
         {
-            if (daoUsuario == null)
-            {
-                daoUsuario = new UsuarioDAO();
-            }
+            if (daoUsuario == null) daoUsuario = new UsuarioDAO();
             return daoUsuario;
         }
+
         #endregion
 
-        public Usuario AccesoSistema(String user, String pass)
+        public Usuario AccesoSistema(string user, string pass)
         {
             SqlConnection conexion = null;
             SqlCommand cmd = null;
@@ -56,12 +59,13 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return objUsuario;
         }
 
         public List<Usuario> ListarUsuarios()
         {
-            List<Usuario> Lista = new List<Usuario>();
+            var Lista = new List<Usuario>();
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
@@ -77,7 +81,7 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // Crear objetos de tipo Usuario
-                    Usuario objUsuario= new Usuario();
+                    var objUsuario = new Usuario();
                     objUsuario.Activo = Convert.ToBoolean(dr["activo"].ToString());
                     objUsuario.Id_Usuario = Convert.ToInt32(dr["id_usuario"].ToString());
                     objUsuario.Correo_Electronico = dr["correo_electronico"].ToString();
@@ -88,7 +92,6 @@ namespace CapaAccesoDatos
                     // añadir a la lista de objetos
                     Lista.Add(objUsuario);
                 }
-
             }
             catch (Exception ex)
             {
@@ -98,14 +101,15 @@ namespace CapaAccesoDatos
             {
                 con.Close();
             }
+
             return Lista;
         }
-        
+
         public bool RegistrarUsuario(Usuario objUsuario)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
-            bool response = false;
+            var response = false;
             try
             {
                 con = Conexion.getInstance().ConexionBD();
@@ -119,9 +123,8 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmRol", objUsuario.Codigo_Rol);
                 con.Open();
 
-                int filas = cmd.ExecuteNonQuery();
+                var filas = cmd.ExecuteNonQuery();
                 if (filas > 0) response = true;
-
             }
             catch (Exception ex)
             {
@@ -132,9 +135,8 @@ namespace CapaAccesoDatos
             {
                 con.Close();
             }
+
             return response;
         }
     }
-    
-    
 }

@@ -17,9 +17,12 @@ namespace CapaEntidades
         public DateTime Fecha_Nacimiento { get; set; }
         public int Id_Usuario { get; set; }
 
-        public Empleado() : this(0, "", "", "", 0, 0, DateTime.Today, 0) { }
+        public Empleado() : this(0, "", "", "", 0, 0, DateTime.Today, 0)
+        {
+        }
 
-        public Empleado(int Rut,string Nombre, string Apellido, string Direccion,int Telefono,int Telefono_Adicional,DateTime Fecha_Nacimiento,int Id_Usuario)
+        public Empleado(int Rut, string Nombre, string Apellido, string Direccion, int Telefono, int Telefono_Adicional,
+            DateTime Fecha_Nacimiento, int Id_Usuario)
         {
             this.Rut = Rut;
             this.Nombre = Nombre;
@@ -30,6 +33,5 @@ namespace CapaEntidades
             this.Fecha_Nacimiento = Fecha_Nacimiento;
             this.Id_Usuario = Id_Usuario;
         }
-        
     }
 }

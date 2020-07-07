@@ -7,11 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace CapaPresentacion
 {
-    public partial class Nosotros : System.Web.UI.Page
+    public partial class Nosotros : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

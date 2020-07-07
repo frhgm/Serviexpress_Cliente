@@ -23,7 +23,7 @@ namespace CapaLogicaNegocio
 
         #endregion
 
-        
+
         public List<Servicio> ListarServicios()
         {
             try
@@ -35,8 +35,5 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-
-        
-    
     }
 }

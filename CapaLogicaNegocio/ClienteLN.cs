@@ -11,19 +11,22 @@ namespace CapaLogicaNegocio
     public class ClienteLN
     {
         #region "PATRON SINGLETON"
+
         private static ClienteLN objCliente = null;
-        private ClienteLN() { }
+
+        private ClienteLN()
+        {
+        }
+
         public static ClienteLN getInstance()
         {
-            if (objCliente == null)
-            {
-                objCliente = new ClienteLN();
-            }
+            if (objCliente == null) objCliente = new ClienteLN();
             return objCliente;
         }
+
         #endregion
 
-        public Cliente AccesoSistema(String user, String pass)
+        public Cliente AccesoSistema(string user, string pass)
         {
             try
             {
@@ -35,7 +38,7 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public Cliente BuscarCliente(String nroDocumento)
+        public Cliente BuscarCliente(string nroDocumento)
         {
             try
             {
@@ -46,7 +49,7 @@ namespace CapaLogicaNegocio
                 throw e;
             }
         }
-        
+
         public bool RegistrarCliente(Cliente objCliente)
         {
             try

@@ -12,19 +12,22 @@ namespace CapaAccesoDatos
     public class ClienteDAO
     {
         #region "PATRON SINGLETON"
+
         private static ClienteDAO daoCliente = null;
-        private ClienteDAO() { }
+
+        private ClienteDAO()
+        {
+        }
+
         public static ClienteDAO getInstance()
         {
-            if (daoCliente == null)
-            {
-                daoCliente = new ClienteDAO();
-            }
+            if (daoCliente == null) daoCliente = new ClienteDAO();
             return daoCliente;
         }
+
         #endregion
 
-        public Cliente AccesoSistema(String user, String pass)
+        public Cliente AccesoSistema(string user, string pass)
         {
             SqlConnection conexion = null;
             SqlCommand cmd = null;
@@ -61,6 +64,7 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return objCliente;
         }
 
@@ -68,7 +72,7 @@ namespace CapaAccesoDatos
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
-            bool response = false;
+            var response = false;
             try
             {
                 con = Conexion.getInstance().ConexionBD();
@@ -84,9 +88,8 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmTipoCliente", objCliente.Tipo_Cliente);
                 con.Open();
 
-                int filas = cmd.ExecuteNonQuery();
+                var filas = cmd.ExecuteNonQuery();
                 if (filas > 0) response = true;
-
             }
             catch (Exception ex)
             {
@@ -97,15 +100,16 @@ namespace CapaAccesoDatos
             {
                 con.Close();
             }
+
             return response;
         }
-        
-        public Cliente BuscarCliente(String nroDocumento)
+
+        public Cliente BuscarCliente(string nroDocumento)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
-            Cliente objCliente = new Cliente();
+            var objCliente = new Cliente();
 
             try
             {
@@ -129,7 +133,6 @@ namespace CapaAccesoDatos
                     objCliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
                     objCliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
                 }
-
             }
             catch (Exception e)
             {

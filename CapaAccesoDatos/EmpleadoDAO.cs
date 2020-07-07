@@ -12,19 +12,22 @@ namespace CapaAccesoDatos
     public class EmpleadoDAO
     {
         #region "PATRON SINGLETON"
+
         private static EmpleadoDAO daoEmpleado = null;
-        private EmpleadoDAO() { }
+
+        private EmpleadoDAO()
+        {
+        }
+
         public static EmpleadoDAO getInstance()
         {
-            if (daoEmpleado == null)
-            {
-                daoEmpleado = new EmpleadoDAO();
-            }
+            if (daoEmpleado == null) daoEmpleado = new EmpleadoDAO();
             return daoEmpleado;
         }
+
         #endregion
 
-        public Empleado AccesoSistema(String user, String pass)
+        public Empleado AccesoSistema(string user, string pass)
         {
             SqlConnection conexion = null;
             SqlCommand cmd = null;
@@ -61,15 +64,16 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return objEmpleado;
         }
 
-        public Empleado BuscarEmpleado(String nroDocumento)
+        public Empleado BuscarEmpleado(string nroDocumento)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
-            Empleado objEmpleado = new Empleado();
+            var objEmpleado = new Empleado();
 
             try
             {
@@ -93,7 +97,6 @@ namespace CapaAccesoDatos
                     objEmpleado.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
                     objEmpleado.Id_Usuario = Convert.ToInt32(dr["usuario_id_usuario"].ToString());
                 }
-
             }
             catch (Exception e)
             {
@@ -106,10 +109,10 @@ namespace CapaAccesoDatos
 
             return objEmpleado;
         }
-        
+
         public List<Empleado> ListarEmpleados()
         {
-            SqlConnection conexion = Conexion.getInstance().ConexionBD();
+            var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<Empleado> Lista = null;
@@ -128,13 +131,12 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    Empleado objEmpleado = new Empleado();
+                    var objEmpleado = new Empleado();
                     objEmpleado.Rut = Convert.ToInt32(dr["rut_empleado"].ToString());
                     objEmpleado.Nombre = dr["NOMBRE"].ToString();
 
                     Lista.Add(objEmpleado);
                 }
-
             }
             catch (Exception ex)
             {
@@ -144,8 +146,8 @@ namespace CapaAccesoDatos
             {
                 conexion.Close();
             }
+
             return Lista;
         }
-
     }
 }

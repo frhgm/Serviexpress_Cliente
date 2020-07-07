@@ -9,10 +9,12 @@ namespace CapaEntidades
         public int Dia_Habil { get; set; }
         public TimeSpan Hora_Inicio { get; set; }
         public TimeSpan Hora_Final { get; set; }
-        public String Bloque { get; set; }
+        public string Bloque { get; set; }
         public bool Disponibilidad { get; set; }
         public char Jornada_Hora { get; set; }
-        
-        public BloqueHora(){ }
+
+        public BloqueHora()
+        {
+        }
     }
 }

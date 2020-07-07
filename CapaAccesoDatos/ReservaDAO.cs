@@ -43,10 +43,10 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmModelo", objReserva.Modelo);
                 cmd.Parameters.AddWithValue("@prmAnno", objReserva.Anno);
                 cmd.Parameters.AddWithValue("@prmDescripcion", objReserva.Descripcion);
-                cmd.Parameters.AddWithValue("@prmRutCliente", objReserva.Rut_Cliente);
-                cmd.Parameters.AddWithValue("@prmServicio", objReserva.Codigo_Servicio);
-                cmd.Parameters.AddWithValue("@prmRutEmpleado", objReserva.Rut_Empleado);
-                cmd.Parameters.AddWithValue("@prmId_Horario", objReserva.Id_Horario);
+                cmd.Parameters.AddWithValue("@prmRutCliente", objReserva.Cliente.Rut);
+                cmd.Parameters.AddWithValue("@prmServicio", objReserva.Servicio.Codigo_Servicio);
+                cmd.Parameters.AddWithValue("@prmRutEmpleado", objReserva.Empleado.Rut);
+                cmd.Parameters.AddWithValue("@prmId_Horario", objReserva.BloqueHora.Id_Horario);
                 cmd.Parameters.AddWithValue("@prmEstado", objReserva.Estado);
 
 
@@ -67,12 +67,14 @@ namespace CapaAccesoDatos
             return response;
         }
 
+
         public List<Reserva> Listar(int rut)
         {
             var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<Reserva> Lista = null;
+
 
             try
             {
@@ -89,18 +91,18 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    var objReserva = new Reserva();
+                    Reserva objReserva = new Reserva();
                     //DATOS RESERVA
                     objReserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
-                    
+
                     objReserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
-                    
-                    objReserva.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
+
+                    objReserva.BloqueHora.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
                     //DATOS CLIENTE
-                    objReserva.Rut_Cliente = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
+                    objReserva.Cliente.Rut = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
                     //DATOS BLOQUE
-                    objReserva.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
-                    objReserva.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
+                    objReserva.BloqueHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
+                    objReserva.BloqueHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
 
                     Lista.Add(objReserva);
                 }
@@ -116,5 +118,50 @@ namespace CapaAccesoDatos
 
             return Lista;
         }
+
+        /*
+        public Reserva BuscarClienteReserva(int rut)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            Reserva objReserva = null;
+
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spBuscarCliente", con);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    objReserva = new Reserva
+                    {
+                        Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString()),
+                        Fecha = Convert.ToDateTime(dr["fecha"].ToString()),
+                        Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString()),
+                        Rut_Cliente = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString()),
+                        Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString()),
+                        Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString())
+                      
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                objReserva = null;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return objReserva;
+        }
+        */
     }
 }

@@ -23,7 +23,7 @@ namespace CapaLogicaNegocio
 
         #endregion
 
-        
+
         public List<Empleado> ListarEmpleados()
         {
             try

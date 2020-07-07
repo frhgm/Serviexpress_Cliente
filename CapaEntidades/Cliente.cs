@@ -15,12 +15,15 @@ namespace CapaEntidades
         public int Telefono_Adicional { get; set; }
         public string Direccion { get; set; }
         public DateTime Fecha_Nacimiento { get; set; }
-        
+
         public bool Tipo_Cliente { get; set; }
 
-        public Cliente() : this(0,"","",0,0,"",DateTime.Now, true) { }
+        public Cliente() : this(0, "", "", 0, 0, "", DateTime.Now, true)
+        {
+        }
 
-        public Cliente(int Rut, string Nombre, string Apellido, int Telefono, int Telefono_Adicional, string Direccion, DateTime Fecha_Nacimiento, bool Tipo_Cliente)
+        public Cliente(int Rut, string Nombre, string Apellido, int Telefono, int Telefono_Adicional, string Direccion,
+            DateTime Fecha_Nacimiento, bool Tipo_Cliente)
         {
             this.Rut = Rut;
             this.Nombre = Nombre;

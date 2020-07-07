@@ -13,6 +13,15 @@ namespace CapaPresentacion {
     public partial class SiteMaster {
         
         /// <summary>
+        /// scriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scriptManager;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

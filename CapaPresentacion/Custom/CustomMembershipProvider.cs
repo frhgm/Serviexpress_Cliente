@@ -12,12 +12,9 @@ namespace CapaPresentacion.Custom
     {
         public override bool ValidateUser(string username, string password)
         {
-            bool ok = false;
-            Usuario objUsuario = UsuarioLN.getInstance().AccesoSistema(username, password);
-            if (objUsuario != null)
-            {
-                ok = true;
-            }
+            var ok = false;
+            var objUsuario = UsuarioLN.getInstance().AccesoSistema(username, password);
+            if (objUsuario != null) ok = true;
             return ok;
         }
 
@@ -27,12 +24,15 @@ namespace CapaPresentacion.Custom
             throw new NotImplementedException();
         }
 
-        public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
+        public override bool ChangePasswordQuestionAndAnswer(string username, string password,
+            string newPasswordQuestion, string newPasswordAnswer)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        public override MembershipUser CreateUser(string username, string password, string email,
+            string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey,
+            out MembershipCreateStatus status)
         {
             throw new NotImplementedException();
         }
@@ -42,22 +42,18 @@ namespace CapaPresentacion.Custom
             throw new NotImplementedException();
         }
 
-        public override bool EnablePasswordReset
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override bool EnablePasswordReset => throw new NotImplementedException();
 
-        public override bool EnablePasswordRetrieval
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override bool EnablePasswordRetrieval => throw new NotImplementedException();
 
-        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
+        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize,
+            out int totalRecords)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
+        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize,
+            out int totalRecords)
         {
             throw new NotImplementedException();
         }
@@ -92,45 +88,21 @@ namespace CapaPresentacion.Custom
             throw new NotImplementedException();
         }
 
-        public override int MaxInvalidPasswordAttempts
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override int MaxInvalidPasswordAttempts => throw new NotImplementedException();
 
-        public override int MinRequiredNonAlphanumericCharacters
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override int MinRequiredNonAlphanumericCharacters => throw new NotImplementedException();
 
-        public override int MinRequiredPasswordLength
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override int MinRequiredPasswordLength => throw new NotImplementedException();
 
-        public override int PasswordAttemptWindow
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override int PasswordAttemptWindow => throw new NotImplementedException();
 
-        public override MembershipPasswordFormat PasswordFormat
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override MembershipPasswordFormat PasswordFormat => throw new NotImplementedException();
 
-        public override string PasswordStrengthRegularExpression
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override string PasswordStrengthRegularExpression => throw new NotImplementedException();
 
-        public override bool RequiresQuestionAndAnswer
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override bool RequiresQuestionAndAnswer => throw new NotImplementedException();
 
-        public override bool RequiresUniqueEmail
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public override bool RequiresUniqueEmail => throw new NotImplementedException();
 
         public override string ResetPassword(string username, string answer)
         {
@@ -149,14 +121,8 @@ namespace CapaPresentacion.Custom
 
         public override string ApplicationName
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
         }
     }
 }

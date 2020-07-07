@@ -13,15 +13,15 @@
                 <p>Cu mél civibús copiosae fórensibus, ex vocent vocibus demócritum sed</p>
             </div>
             <div id="detallesReserva">
-                <label>Nombre: Nombre Apellido</label><br />
-                <label>Rut: 11.111.111-1</label><br />
-                <label>N° boleta: 11111</label><br />
-                <label>Total: $111.000</label><br />
-                <label>Fecha: 01-01-2021</label><br />  
+                <label>Nombre: Nombre Apellido</label><br/>
+                <label>Rut: 11.111.111-1</label><br/>
+                <label>N° boleta: 11111</label><br/>
+                <label>Total: $111.000</label><br/>
+                <label>Fecha: 01-01-2021</label><br/>
 
                 <button class="btn btn-default">Volver</button>
             </div>
-            
+
         </div>
     </div>
 </asp:Content>

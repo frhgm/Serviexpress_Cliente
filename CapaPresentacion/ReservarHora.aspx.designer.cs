@@ -22,6 +22,24 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.UpdatePanel upPanel;
         
         /// <summary>
+        /// panelMensajes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelMensajes;
+        
+        /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
         /// txtRut control.
         /// </summary>
         /// <remarks>
@@ -130,13 +148,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.GridView grdHorariosAtencion;
         
         /// <summary>
+        /// detallesReserva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify, move the field declaration from the designer file to a code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl detallesReserva;
+        
+        /// <summary>
         /// btnListarReserva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnListarReserva;
+        protected global::System.Web.UI.WebControls.LinkButton btnListarReserva;
         
         /// <summary>
         /// btnAgendarReserva control.
@@ -154,7 +181,7 @@ namespace CapaPresentacion {
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarReserva;
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelarReserva;
         
         /// <summary>
         /// Master property.
