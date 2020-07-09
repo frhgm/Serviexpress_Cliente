@@ -11,17 +11,17 @@ Esta parte del proyecto serviexpress está orientado a los clientes online del s
 ### Proceso de instalación
 
 1. Primero, instale en el orden indicado anteriormente las herramientas
-2. Una vez que esté todo instalado, debe abrir SQLServer e ingresar sus credenciales [SQLServer Login](instruccionesREADME/loginSQL.png)
+2. Una vez que esté todo instalado, debe abrir SQLServer e ingresar sus credenciales [SQLServer Login](/InstruccionesREADME/loginSQL.png)
 
-   1. Una vez aqui, haga click derecho en su "servidor", y seleccione [**Nueva query**](InstruccionesREADME/nuevaQuery.png)
+   1. Una vez aqui, haga click derecho en su "servidor", y seleccione [**Nueva query**](/InstruccionesREADME/nuevaQuery.png)
    2. Copie el siguiente codigo [Script SQL](/InstruccionesREADME/SERVIEXPRESS.sql) en la ventana que se acaba de abrir, y haga click en [**Execute**](/InstruccionesREADME/runScript.png)
 
-   3. Siguiendo el mismo procedimiento del paso anterior, ejecute el siguiente [**Script**](instruccionesREADME/script_datos.sql) para poblarlas
+   3. Siguiendo el mismo procedimiento del paso anterior, ejecute el siguiente [**Script**](/InstruccionesREADME/script_datos.sql) para poblarlas
 
 3. Con [SQLServer] listo, tiene que instalar Visual Studio 2019.
-   1. Una vez instalado, abralo, y seleccione la opción [**Open a project or solution**](instruccionesREADME/startupVS.png)
+   1. Una vez instalado, abralo, y seleccione la opción [**Open a project or solution**](/InstruccionesREADME/startupVS.png)
 
 
 ## Como iniciar el programa
 
-1. Debe hacer click en el icono [**IIS Express**](InstruccionesREADME/iniciarPrograma.png)
+1. Debe hacer click en el icono [**IIS Express**](/InstruccionesREADME/iniciarPrograma.png)
