@@ -29,7 +29,8 @@ namespace CapaAccesoDatos
         {
             var conexion = new SqlConnection();
             conexion.ConnectionString =
-                "Data Source=DESKTOP-AKH9PI2\\SQLEXPRESS;Initial Catalog=SERVIEXPRESS;Integrated Security=True";
+                "Data Source=(local);Initial Catalog=SERVIEXPRESS;Integrated Security=True";
+            //ConnectionString = "Data Source=(local); Initial Catalog=DBClinica_test;"
 
 
             return conexion;

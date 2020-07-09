@@ -38,11 +38,11 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public Cliente BuscarCliente(string nroDocumento)
+        public Cliente BuscarCliente(int rut)
         {
             try
             {
-                return ClienteDAO.getInstance().BuscarCliente(nroDocumento);
+                return ClienteDAO.getInstance().BuscarCliente(rut);
             }
             catch (Exception e)
             {

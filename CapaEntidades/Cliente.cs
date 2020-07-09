@@ -18,21 +18,38 @@ namespace CapaEntidades
 
         public bool Tipo_Cliente { get; set; }
 
-        public Cliente() : this(0, "", "", 0, 0, "", DateTime.Now, true)
+        
+        /*
+         *  [Required]
+    [StringLength(100)]
+    public string Title { get; set; }
+
+    [ClassicMovie(1960)]
+    [DataType(DataType.Date)]
+    [Display(Name = "Release Date")]
+    public DateTime ReleaseDate { get; set; }
+
+    [Required]
+    [StringLength(1000)]
+    public string Description { get; set; }
+
+    [Range(0, 999.99)]
+         */
+        public Cliente() : this(0, "", "", 0, 0, "", DateTime.Today, true)
         {
         }
 
-        public Cliente(int Rut, string Nombre, string Apellido, int Telefono, int Telefono_Adicional, string Direccion,
-            DateTime Fecha_Nacimiento, bool Tipo_Cliente)
+        public Cliente(int _Rut, string _Nombre, string _Apellido, int _Telefono, int _Telefono_Adicional, string _Direccion,
+            DateTime _Fecha_Nacimiento, bool _Tipo_Cliente)
         {
-            this.Rut = Rut;
-            this.Nombre = Nombre;
-            this.Apellido = Apellido;
-            this.Telefono = Telefono;
-            this.Telefono_Adicional = Telefono_Adicional;
-            this.Direccion = Direccion;
-            this.Fecha_Nacimiento = Fecha_Nacimiento;
-            this.Tipo_Cliente = Tipo_Cliente;
+            this.Rut = _Rut;
+            this.Nombre = _Nombre;
+            this.Apellido = _Apellido;
+            this.Telefono = _Telefono;
+            this.Telefono_Adicional = _Telefono_Adicional;
+            this.Direccion = _Direccion;
+            this.Fecha_Nacimiento = _Fecha_Nacimiento;
+            this.Tipo_Cliente = _Tipo_Cliente;
         }
     }
 }

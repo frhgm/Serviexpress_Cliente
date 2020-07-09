@@ -104,18 +104,18 @@ namespace CapaAccesoDatos
             return response;
         }
 
-        public Cliente BuscarCliente(string nroDocumento)
+        public Cliente BuscarCliente(int rut)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
-            var objCliente = new Cliente();
+            Cliente cliente = new Cliente();
 
             try
             {
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spBuscarEmpleado", con);
-                cmd.Parameters.AddWithValue("@prmNroDocumento", nroDocumento);
+                cmd = new SqlCommand("spBuscarCliente", con);
+                cmd.Parameters.AddWithValue("@prmRut", rut);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 con.Open();
@@ -124,14 +124,14 @@ namespace CapaAccesoDatos
 
                 if (dr.Read())
                 {
-                    objCliente.Rut = Convert.ToInt32(dr["rut_cliente"].ToString());
-                    objCliente.Nombre = dr["nombre_cliente"].ToString();
-                    objCliente.Apellido = dr["apellido_cliente"].ToString();
-                    objCliente.Direccion = dr["direccion"].ToString();
-                    objCliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
-                    objCliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
-                    objCliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
-                    objCliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
+                    cliente.Rut = Convert.ToInt32(dr["rut_cliente"].ToString());
+                    cliente.Nombre = dr["nombre_cliente"].ToString();
+                    cliente.Apellido = dr["apellido_cliente"].ToString();
+                    cliente.Direccion = dr["direccion"].ToString();
+                    cliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
+                    cliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
+                    cliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
+                    cliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
                 }
             }
             catch (Exception e)
@@ -143,7 +143,9 @@ namespace CapaAccesoDatos
                 con.Close();
             }
 
-            return objCliente;
+            return cliente;
         }
+        
+        
     }
 }

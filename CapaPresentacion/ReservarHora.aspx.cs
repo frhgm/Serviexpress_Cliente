@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -43,7 +44,6 @@ namespace CapaPresentacion
             }
             else
             {
-                mensaje = "";
                 rut = Convert.ToInt32(txtRut.Text);
                 lblMensaje.Text = mensaje;
                 var reservas = ReservaLN.getInstance().Listar(rut);
@@ -65,7 +65,7 @@ namespace CapaPresentacion
             objReserva.Descripcion = txtDescripcion.Text;
             objReserva.Cliente.Rut = Convert.ToInt32(txtRut.Text);
             objReserva.Servicio.Codigo_Servicio = Convert.ToInt32(ddlServicio.SelectedValue);
-            objReserva.Empleado.Rut = Convert.ToInt32(ddlEmpleado.SelectedValue); //96715552
+            objReserva.Empleado.Rut = Convert.ToInt32(ddlEmpleado.SelectedValue);
             objReserva.BloqueHora.Id_Horario = Convert.ToInt32(ddlBloque.SelectedValue);
 
             //define si esta vigente
@@ -74,10 +74,22 @@ namespace CapaPresentacion
             return objReserva;
         }
 
-        /*
-        public Reserva BuscarClienteReserva(int rut)
+        [WebMethod]
+        public Cliente BuscarCliente(int rut)
         {
-            return ReservaLN.getInstance().BuscarClienteReserva(rut);
+            return ClienteLN.getInstance().BuscarCliente(rut);
+        }
+        
+        /*
+        [WebMethod]
+        public static bool EliminarReserva(int rut)
+        {
+            Int32 rutCliente = Convert.ToInt32(rut);
+
+            bool ok = ReservaLN.getInstance().Eliminar(rutCliente);
+            
+            return ok;
+
         }
 */
         private void LlenarEmpleados()
@@ -88,7 +100,7 @@ namespace CapaPresentacion
             ddlEmpleado.DataValueField = "Rut";
             ddlEmpleado.DataTextField = "Nombre";
             ddlEmpleado.DataBind();
-            ddlEmpleado.Items.Insert(0, new ListItem(" Seleccione empleado"));
+            ddlEmpleado.Items.Insert(0, new ListItem(" Primero seleccione un empleado", "0"));
         }
 
         private void LlenarServicios()
@@ -100,7 +112,7 @@ namespace CapaPresentacion
             ddlServicio.DataValueField = "Codigo_Servicio";
             ddlServicio.DataTextField = "Nombre";
             ddlServicio.DataBind();
-            ddlServicio.Items.Insert(0, new ListItem(" Seleccione servicio"));
+            ddlServicio.Items.Insert(0, new ListItem(" Luego un servicio"));
         }
 
 
@@ -115,7 +127,7 @@ namespace CapaPresentacion
             ddlBloque.DataValueField = "Id_Horario";
             ddlBloque.DataTextField = "Bloque";
             ddlBloque.DataBind();
-            ddlBloque.Items.Insert(0, new ListItem(" Seleccione bloque"));
+            ddlBloque.Items.Insert(0, new ListItem(" Y un bloque horario"));
         }
 
 
@@ -137,6 +149,7 @@ namespace CapaPresentacion
                 panelMensajes.CssClass = "alert-success alert text-center";
                 mensaje = "Reserva agendada correctamente";
                 lblMensaje.Text = mensaje;
+
             }
             else
             {
@@ -181,7 +194,7 @@ namespace CapaPresentacion
                 finally
                 {
                     panelMensajes.CssClass = "alert-success alert text-center";
-                    mensaje = "Reserva cancelada correctamente";
+                    mensaje = "Reserva " + reserva + " cancelada correctamente";
                     lblMensaje.Text = mensaje;
                     conexion.Close();
                 }

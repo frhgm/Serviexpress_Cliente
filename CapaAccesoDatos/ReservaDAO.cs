@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using CapaEntidades;
 
+
 namespace CapaAccesoDatos
 {
     public class ReservaDAO
@@ -70,7 +71,7 @@ namespace CapaAccesoDatos
 
         public List<Reserva> Listar(int rut)
         {
-            var conexion = Conexion.getInstance().ConexionBD();
+            SqlConnection conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             List<Reserva> Lista = null;
@@ -91,20 +92,21 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // llenamos los objetos
-                    Reserva objReserva = new Reserva();
+                    Reserva reserva = new Reserva();
                     //DATOS RESERVA
-                    objReserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
+                    reserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
 
-                    objReserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
+                    reserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
+                    
 
-                    objReserva.BloqueHora.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
+                    reserva.BloqueHora.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
                     //DATOS CLIENTE
-                    objReserva.Cliente.Rut = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
+                    reserva.Cliente.Rut = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
                     //DATOS BLOQUE
-                    objReserva.BloqueHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
-                    objReserva.BloqueHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
+                    reserva.BloqueHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
+                    reserva.BloqueHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
 
-                    Lista.Add(objReserva);
+                    Lista.Add(reserva);
                 }
             }
             catch (Exception ex)
@@ -119,49 +121,39 @@ namespace CapaAccesoDatos
             return Lista;
         }
 
-        /*
-        public Reserva BuscarClienteReserva(int rut)
+        
+        public bool Eliminar(int rut)
         {
-            SqlConnection con = null;
+            SqlConnection conexion = null;
             SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            Reserva objReserva = null;
-
+            bool ok = false;
             try
             {
-                con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spBuscarCliente", con);
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spEliminarReserva", conexion);
                 cmd.Parameters.AddWithValue("@prmRut", rut);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                con.Open();
-                dr = cmd.ExecuteReader();
+                conexion.Open();
 
-                if (dr.Read())
-                {
-                    objReserva = new Reserva
-                    {
-                        Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString()),
-                        Fecha = Convert.ToDateTime(dr["fecha"].ToString()),
-                        Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString()),
-                        Rut_Cliente = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString()),
-                        Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString()),
-                        Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString())
-                      
-                    };
-                }
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+
             }
             catch (Exception ex)
             {
-                objReserva = null;
+                ok = false;
                 throw ex;
             }
             finally
             {
-                con.Close();
+                conexion.Close();
             }
-            return objReserva;
+            return ok;
         }
-        */
+        
+        
+        
     }
 }

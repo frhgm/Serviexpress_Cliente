@@ -61,7 +61,7 @@ namespace CapaPresentacion
             if (response)
             {
                 panelMensajes.CssClass = "alert-success alert text-center";
-                mensaje = "Registro exitoso, sera redirigido a reservas";
+                mensaje = "Registro exitoso, sera redirigido a reservas";   
                 lblMensaje.Text = mensaje;
                 
                 var oScript = new HtmlMeta();
