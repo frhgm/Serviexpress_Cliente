@@ -13,19 +13,41 @@ namespace CapaPresentacion
     public partial class Registro : Page
     {
         private string mensaje = "";
+        private string rut;
+        private string verificador;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
             }
         }
+        
+        
 
-        private Cliente GetEntity() //RECUPERAR DATOS INPUTS
+        public string Rut_Recortado()
+        {
+            rut = txtRut.Text;
+            verificador = rut.Remove(0,rut.Length - 1);
+            rut = rut.Remove(rut.Length - 1);
+            string resultado = "";
+            if (verificador.Equals("k"))
+            {
+                resultado =  rut + 0;
+            }
+            else
+            {
+                resultado = rut  + verificador;
+            }
+
+            return resultado;
+        }
+
+        private Cliente RecuperarDatos()
         {
             var objCliente = new Cliente();
             if (txtFijo.Text == string.Empty)
             {
-                objCliente.Rut = Convert.ToInt32(txtRut.Text);
+                objCliente.Rut = Convert.ToInt32(Rut_Recortado());//RECUPERAR ULTIMO NUMERO, SI ES K, REEMPLAZAR POR 0
                 objCliente.Telefono_Adicional = 0;
                 objCliente.Nombre = txtNombre.Text;
                 objCliente.Apellido = txtApellido.Text;
@@ -53,7 +75,7 @@ namespace CapaPresentacion
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             // Registro del cliente
-            var objCliente = GetEntity();
+            var objCliente = RecuperarDatos();
 
 
             // enviar a la capa de logica de negocio

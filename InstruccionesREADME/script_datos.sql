@@ -296,7 +296,7 @@ insert into familia_producto
 values
 (next value for secuencia_familia,'neumaticos',1),
 (next value for secuencia_familia, 'llantass',1),
-(next value for secuencia_familia,'baterías',1),
+(next value for secuencia_familia,'baterï¿½as',1),
 (next value for secuencia_familia,'lubricantes',1),
 (next value for secuencia_familia,'aditivos',1),
 (next value for secuencia_familia,'anticongelantes',1),
@@ -335,9 +335,9 @@ go
 
 insert into producto
 values
-(next value for secuencia_producto,11590,'Lubricante Sintetico 5W-30 1lt','el Lubricante Sintetico 5W-30 1lt es lo mejor que encontrará en el mercado de lubricantes',4,1,10),
-(next value for secuencia_producto,35000,'Batería 55 A Derecho Positivo 315 CCA','La Batería Autobatt es una pieza clave para todo vehículo, ya que al alimentar el motor de partida',3,3,8),
-(next value for secuencia_producto,5900,'Coolant anticorrosivo 1 gl bidón','El Coolant anticorrosivo Autostyleforma parte de los accesorios automóviles que previenen daños en los motores',7,3,9)
+(next value for secuencia_producto,11590,'Lubricante Sintetico 5W-30 1lt','el Lubricante Sintetico 5W-30 1lt es lo mejor que encontrarï¿½ en el mercado de lubricantes',4,1,10),
+(next value for secuencia_producto,35000,'Baterï¿½a 55 A Derecho Positivo 315 CCA','La Baterï¿½a Autobatt es una pieza clave para todo vehï¿½culo, ya que al alimentar el motor de partida',3,3,8),
+(next value for secuencia_producto,5900,'Coolant anticorrosivo 1 gl bidï¿½n','El Coolant anticorrosivo Autostyleforma parte de los accesorios automï¿½viles que previenen daï¿½os en los motores',7,3,9)
 
 go
 
@@ -367,3 +367,7 @@ go
 select * from dia_habil
 go
 select * from bloque_hora
+
+
+--PROCEDIMIENTO
+go 

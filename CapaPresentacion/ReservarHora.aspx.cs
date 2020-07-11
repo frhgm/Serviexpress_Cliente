@@ -24,7 +24,7 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                LlenarEmpleados();
+                LlenarServicios();
                 panelMensajes.CssClass = "alert-info alert text-center";
                 mensaje =
                     "Recuerde ingresar el rut con el que se registro, ya que lo llamaremos para confirmar su reserva";
@@ -53,7 +53,7 @@ namespace CapaPresentacion
         }
 
 
-        private Reserva GetEntity() //RECUPERAR DATOS
+        private Reserva RecuperarDatos() //RECUPERAR DATOS
         {
             Reserva objReserva = new Reserva();
 
@@ -100,19 +100,18 @@ namespace CapaPresentacion
             ddlEmpleado.DataValueField = "Rut";
             ddlEmpleado.DataTextField = "Nombre";
             ddlEmpleado.DataBind();
-            ddlEmpleado.Items.Insert(0, new ListItem(" Primero seleccione un empleado", "0"));
+            ddlEmpleado.Items.Insert(0, new ListItem(" Luego un empleado", "0"));
         }
 
         private void LlenarServicios()
         {
             var Lista = ServicioLN.getInstance().ListarServicios();
 
-            var codigo = Convert.ToInt32(ddlEmpleado.SelectedValue);
             ddlServicio.DataSource = Lista;
             ddlServicio.DataValueField = "Codigo_Servicio";
             ddlServicio.DataTextField = "Nombre";
             ddlServicio.DataBind();
-            ddlServicio.Items.Insert(0, new ListItem(" Luego un servicio"));
+            ddlServicio.Items.Insert(0, new ListItem(" Primero seleccione un servicio"));
         }
 
 
@@ -127,14 +126,14 @@ namespace CapaPresentacion
             ddlBloque.DataValueField = "Id_Horario";
             ddlBloque.DataTextField = "Bloque";
             ddlBloque.DataBind();
-            ddlBloque.Items.Insert(0, new ListItem(" Y un bloque horario"));
+            ddlBloque.Items.Insert(0, new ListItem(" Y por ultimo un bloque horario"));
         }
 
 
         private void Reserva()
         {
             // Registro del cliente
-            var objReserva = GetEntity();
+            var objReserva = RecuperarDatos();
 
 
             // enviar a la capa de logica de negocio
@@ -222,13 +221,13 @@ namespace CapaPresentacion
         }
 
         //busca si se ha cambiado la seleccion de empleado y actualiza ddlServicios
-        protected void SeleccionEmpleado(object sender, EventArgs e)
+        protected void SeleccionServicio(object sender, EventArgs e)
         {
-            LlenarServicios();
+            LlenarEmpleados();
         }
 
         //busca si se ha cambiado la seleccion de servicio y actualiza ddlBloque
-        protected void SeleccionServicio(object sender, EventArgs e)
+        protected void SeleccionEmpleado(object sender, EventArgs e)
         {
             LlenarBloque();
         }

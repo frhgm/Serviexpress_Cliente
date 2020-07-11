@@ -24,4 +24,4 @@ Esta parte del proyecto serviexpress está orientado a los clientes online del s
 
 ## Como iniciar el programa
 
-1. Debe hacer click en el icono [**IIS Express**](InstruccionesREADME/iniciarPrograma.png)
+1. Debe hacer click en el icono [**IIS Express**](InstruccionesREADME/iniciarPrograma.png), y debería iniciarse el

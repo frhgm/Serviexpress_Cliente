@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="txtFijo">TELEFONO FIJO</label>
-                    <asp:TextBox ID="txtFijo" runat="server" placeholder="Opcional" Text="" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtFijo" runat="server" placeholder="Opcional" MaxLength="9" Text="" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <label for="txtDireccion">DIRECCIÓN</label>

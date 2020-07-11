@@ -1,6 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CapaPresentacion.SiteMaster" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CapaPresentacion.SiteMaster" %>
 
-<!DOCTYPE html>
 
 <html lang="es" xmlns="http://www.w3.org/1999/html">
 <head runat="server">
@@ -9,17 +8,19 @@
     <title><%: Page.Title %> - Taller Serviexpress</title>
 
 
-    <webopt:bundlereference runat="server" path="~/Content/css"/>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <webopt:bundlereference runat="server" path="/Content/"/>
+    <link rel="stylesheet" href="Content/font-awesome/css/font-awesome.css">
+    <link href="Content/wrench.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="icon" class="fa fa-camera-retro fa-3x">
     <link href="lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    
     <link href="Content/Estilos.css" rel="stylesheet"/>
 </head>
 <body>
 <form class="form1" runat="server">
     <asp:ScriptManager ID="scriptManager" runat="server">
     </asp:ScriptManager>
-<div class="container">
+<div class="container" id="navbar">
     <nav class="navbar navbar-expand-sm fixed-top">
         <a class="navbar-brand" href="/Home.aspx">SERVIEXPRESS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse">
@@ -28,7 +29,7 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="Home.aspx" class="nav-link">Home</a>
+                    <a href="Home.aspx" class="nav-link">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a href="Nosotros.aspx" class="nav-link">Nosotros</a>

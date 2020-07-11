@@ -8,8 +8,6 @@ namespace CapaEntidades
         public int Numero_Reserva { get; set; }
         public DateTime Fecha { get; set; }
 
-        
-
         //public int Hora { get; set; }
         public string Patente { get; set; }
         public string Marca { get; set; }
