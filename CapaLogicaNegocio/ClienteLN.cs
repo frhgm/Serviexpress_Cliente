@@ -38,7 +38,7 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public Cliente BuscarCliente(int rut)
+        public bool BuscarCliente(int rut)
         {
             try
             {

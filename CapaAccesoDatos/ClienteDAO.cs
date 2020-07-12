@@ -104,12 +104,13 @@ namespace CapaAccesoDatos
             return response;
         }
 
-        public Cliente BuscarCliente(int rut)
+        public bool BuscarCliente(int rut)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             Cliente cliente = new Cliente();
+            var response = false;
 
             try
             {
@@ -125,17 +126,14 @@ namespace CapaAccesoDatos
                 if (dr.Read())
                 {
                     cliente.Rut = Convert.ToInt32(dr["rut_cliente"].ToString());
-                    cliente.Nombre = dr["nombre_cliente"].ToString();
-                    cliente.Apellido = dr["apellido_cliente"].ToString();
-                    cliente.Direccion = dr["direccion"].ToString();
-                    cliente.Telefono = Convert.ToInt32(dr["telefono"].ToString());
-                    cliente.Telefono_Adicional = Convert.ToInt32(dr["telefono_adicional"].ToString());
-                    cliente.Fecha_Nacimiento = Convert.ToDateTime(dr["fecha_nacimiento"].ToString());
-                    cliente.Tipo_Cliente = Convert.ToBoolean(dr["usuario_id_usuario"].ToString());
                 }
+                
+                var filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
             }
             catch (Exception e)
             {
+                response = false;
                 throw e;
             }
             finally
@@ -143,7 +141,7 @@ namespace CapaAccesoDatos
                 con.Close();
             }
 
-            return cliente;
+            return response;
         }
         
         

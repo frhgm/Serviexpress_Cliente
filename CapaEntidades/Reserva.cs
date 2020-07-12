@@ -7,8 +7,6 @@ namespace CapaEntidades
     {
         public int Numero_Reserva { get; set; }
         public DateTime Fecha { get; set; }
-
-        //public int Hora { get; set; }
         public string Patente { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
@@ -23,6 +21,7 @@ namespace CapaEntidades
         public BloqueHora Hora_Inicio { get; set; }
         public BloqueHora Hora_Final { get; set; }
 
+        
 
         public Reserva() : this(0, DateTime.Today, String.Empty, String.Empty, String.Empty, 0, String.Empty, 
             new Servicio(), new Cliente(), new Empleado(), new BloqueHora(),

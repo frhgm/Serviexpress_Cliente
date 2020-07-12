@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -19,7 +20,8 @@ namespace CapaPresentacion
     public partial class ReservarHora : Page
     {
         private string mensaje = "";
-
+        private string rut;
+        private string verificador;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,12 +33,90 @@ namespace CapaPresentacion
                 lblMensaje.Text = mensaje;
             }
         }
+        /*
+        private bool BuscarCliente()
+        {
+            int rut = Convert.ToInt32(txtRut.Text);   
+            string connectionstring = "Data Source=(local);Initial Catalog=SERVIEXPRESS;Integrated Security=True";
+            var encontrado = false;
+            using(SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT rut_cliente from ficha_cliente WHERE rut_cliente = " + rut + ";", conn);
+                int result = (int)cmd.ExecuteScalar();
+                if (result > 0)
+                {
+                    encontrado = true;
+                }
+                conn.Close();
+            }
 
+            return encontrado;
+        }
+        
+    */
+       
+       public string Rut_Recortado()
+       {
+           rut = txtRut.Text;
+           verificador = rut.Remove(0,rut.Length - 1);
+           rut = rut.Remove(rut.Length - 1);
+           string resultado = "";
+           if (verificador.Equals("k"))
+           {
+               resultado =  rut + 0;
+           }
+           else
+           {
+               resultado = rut  + verificador;
+           }
+
+           return resultado;
+       }
+       
+       string cs = ConfigurationManager.ConnectionStrings["SERVIEXPRESSConnectionString"].ConnectionString;
+
+       //SqlConnection conexion = Conexion.getInstance().ConexionBD();
+       
+       //Method for DataBinding  
+       protected void ListarReservas()
+       {
+           int rut = 0;
+           if (txtRut.Text.Equals(string.Empty)) //REVISAR QUE HAYA INGRESADO RUT
+           {
+               panelMensajes.CssClass = "alert-warning alert text-center";
+               mensaje = "Debe ingresar su rut para buscar reservas";
+               lblMensaje.Text = mensaje;
+           }
+           else
+           {
+               panelMensajes.CssClass = "";
+               rut = Convert.ToInt32(txtRut.Text);
+               lblMensaje.Text = "";
+               
+               DataTable dt = new DataTable();  
+               SqlConnection con = new SqlConnection(cs);
+               rut = Convert.ToInt32(Rut_Recortado());
+               string select = "SELECT r.n_reserva, r.fecha, b.hora_inicio, b.hora_final FROM reserva r join bloque_hora b on r.bloque_hora_id_horario = b.id_horario where r.ficha_cliente_rut_cliente = " + rut + " AND r.estado_reserva = 1;";
+               SqlDataAdapter adapt = new SqlDataAdapter(select,con);  
+               con.Open();  
+               adapt.Fill(dt);  
+               con.Close();  
+               if(dt.Rows.Count>0)  
+               {  
+                   gridReservas.DataSource = dt;  
+                   gridReservas.DataBind();  
+               } 
+               
+           }
+           
+       }   
+       /*
         private void LlenarGridViewReservas()
         {
             var rut = 0;
 
-            if (txtRut.Text.Equals(string.Empty)) //VALIDAR QUE NO EXISTA
+            if (txtRut.Text.Equals(string.Empty)) //REVISAR QUE HAYA INGRESADO RUT
             {
                 panelMensajes.CssClass = "alert-warning alert text-center";
                 mensaje = "Debe ingresar su rut para buscar reservas";
@@ -44,14 +124,15 @@ namespace CapaPresentacion
             }
             else
             {
+                panelMensajes.CssClass = "";
                 rut = Convert.ToInt32(txtRut.Text);
                 lblMensaje.Text = mensaje;
                 var reservas = ReservaLN.getInstance().Listar(rut);
-                grdHorariosAtencion.DataSource = reservas;
-                grdHorariosAtencion.DataBind();
+                gridReservas.DataSource = reservas;
+                gridReservas.DataBind();
             }
         }
-
+*/
 
         private Reserva RecuperarDatos() //RECUPERAR DATOS
         {
@@ -63,7 +144,7 @@ namespace CapaPresentacion
             objReserva.Modelo = txtModelo.Text;
             objReserva.Anno = Convert.ToInt32(txtAnno.Text);
             objReserva.Descripcion = txtDescripcion.Text;
-            objReserva.Cliente.Rut = Convert.ToInt32(txtRut.Text);
+            objReserva.Cliente.Rut = Convert.ToInt32(Rut_Recortado());
             objReserva.Servicio.Codigo_Servicio = Convert.ToInt32(ddlServicio.SelectedValue);
             objReserva.Empleado.Rut = Convert.ToInt32(ddlEmpleado.SelectedValue);
             objReserva.BloqueHora.Id_Horario = Convert.ToInt32(ddlBloque.SelectedValue);
@@ -73,25 +154,13 @@ namespace CapaPresentacion
 
             return objReserva;
         }
-
+        /*
         [WebMethod]
-        public Cliente BuscarCliente(int rut)
+        public bool BuscarCliente(int rut)
         {
             return ClienteLN.getInstance().BuscarCliente(rut);
         }
-        
-        /*
-        [WebMethod]
-        public static bool EliminarReserva(int rut)
-        {
-            Int32 rutCliente = Convert.ToInt32(rut);
-
-            bool ok = ReservaLN.getInstance().Eliminar(rutCliente);
-            
-            return ok;
-
-        }
-*/
+        */
         private void LlenarEmpleados()
         {
             var Lista = EmpleadoLN.getInstance().ListarEmpleados();
@@ -145,6 +214,7 @@ namespace CapaPresentacion
                                             GetEntity().Rut_Empleado + "Servicio: " + GetEntity().Codigo_Servicio +
                                             "Horario: " + GetEntity().Hora_Inicio;
                                             */
+                panelMensajes.CssClass = "";
                 panelMensajes.CssClass = "alert-success alert text-center";
                 mensaje = "Reserva agendada correctamente";
                 lblMensaje.Text = mensaje;
@@ -180,7 +250,6 @@ namespace CapaPresentacion
                 {
                     cmd = new SqlCommand("[spCancelarReserva]", conexion);
                     cmd.Parameters.AddWithValue("@prmRut", rut);
-                    cmd.Parameters.AddWithValue("@prmReserva", reserva);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conexion.Open();
@@ -192,6 +261,7 @@ namespace CapaPresentacion
                 }
                 finally
                 {
+                    panelMensajes.CssClass = "";
                     panelMensajes.CssClass = "alert-success alert text-center";
                     mensaje = "Reserva " + reserva + " cancelada correctamente";
                     lblMensaje.Text = mensaje;
@@ -204,9 +274,10 @@ namespace CapaPresentacion
         {
         }
 
+       
         protected void btnListarReserva_Click(object sender, EventArgs e)
         {
-            LlenarGridViewReservas();
+            ListarReservas();
         }
 
 
@@ -231,5 +302,7 @@ namespace CapaPresentacion
         {
             LlenarBloque();
         }
+
+        
     }
 }

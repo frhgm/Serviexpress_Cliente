@@ -123,54 +123,30 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <!-- Crear nuestro GridView -->
-            <asp:GridView ID="grdHorariosAtencion" runat="server" CssClass="table table-secondary table-striped" AutoGenerateColumns="false">
+
+            <asp:GridView
+                CssClass="table table-secondary table-striped"
+                ID="gridReservas"
+                runat="server"
+                AutoGenerateColumns="False">
+
                 <Columns>
-                    <asp:TemplateField>
-                        <HeaderTemplate>
-                            <asp:Label ID="lblNumeroHeader" runat="server" Text="N° Reserva"></asp:Label>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="lblNumero" runat="server" Text='<%#Eval("Numero_Reserva") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <%-- ItemStyle-Width="60px --%>
-                    <asp:TemplateField>
-                        <HeaderTemplate>
-                            <asp:Label ID="lblFechaHeader" runat="server" Text="Fecha de Atención"></asp:Label>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="lblFecha" runat="server" Text='<%#Eval("Fecha") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="Numero reserva" DataField="n_reserva"/>
+                    <asp:BoundField DataFormatString="{0:D}" HeaderText="Fecha" DataField="fecha"/>
+                    <asp:BoundField HeaderText="Hora inicio" DataField="hora_inicio"/>
+                    <asp:BoundField HeaderText="Hora final" DataField="hora_final"/>
+                    
 
-                    <asp:TemplateField>
-                        <HeaderTemplate>
-                            <asp:Label ID="lblBloqueHeader" runat="server" Text="Hora inicio"></asp:Label>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:HiddenField ID="hfHoraInicio" runat="server" Value='<%#Eval("hora_inicio") %>'/>
-                            <asp:Label ID="lblHoraInicio" runat="server" Text='<%#Eval("BloqueHora.Hora_Inicio") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField>
-                        <HeaderTemplate>
-                            <asp:Label ID="lblBloqueHeader" runat="server" Text="Hora Termino"></asp:Label>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:HiddenField ID="hfHoraFinal" runat="server" Value='<%#Eval("hora_final") %>'/>
-                            <asp:Label ID="lblHoraFinal" runat="server" Text='<%#Eval("BloqueHora.Hora_Final") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
     </div>
 </div>
+
 <br/>
 <div class="modal" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -192,12 +168,12 @@
     </div>
 </div>
 <div class="container">
-
-
     <div class="row">
+
         <div class="col-md-4 text-center">
             <asp:LinkButton ID="btnListarReserva" CausesValidation="False" runat="server" Text="Ver Reservas" CssClass="btn btn-secondary" OnClick="btnListarReserva_Click"/>
         </div>
+
         <div class="col-md-4 text-center">
             <asp:Button ID="btnAgendarReserva" runat="server" Text="Agendar Reserva" CssClass="btn btn-primary" OnClick="btnAgendarReserva_Click"/>
         </div>
@@ -206,6 +182,7 @@
         </div>
         <!--OnClientClick para llamar a funcion js -->
     </div>
+
 </div>
 </section>
 </ContentTemplate>
@@ -213,10 +190,4 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
 
-    <script>
-    $('#myModal').on('shown.bs.modal', 
-    function () {
-      $('#btnCancelarReserva').trigger('focus')
-    })
-    </script>
 </asp:Content>

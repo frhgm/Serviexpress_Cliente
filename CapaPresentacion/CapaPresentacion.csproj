@@ -156,6 +156,7 @@
     <Content Include="Registro.aspx" />
     <Content Include="ReservaExitosa.aspx" />
     <Content Include="ReservarHora.aspx" />
+    <Content Include="script.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />

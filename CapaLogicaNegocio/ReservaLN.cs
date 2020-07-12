@@ -47,6 +47,7 @@ namespace CapaLogicaNegocio
             }
         }
         
+        /*
         public bool Eliminar(int rut)
         {
             try
@@ -58,20 +59,10 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-
+*/
         /*
         
-        public Reserva BuscarClienteRut(int rut)
-        {
-            try 
-            {
-                return ReservaDAO.getInstance().BuscarClienteReserva(rut);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
 
         */
     }

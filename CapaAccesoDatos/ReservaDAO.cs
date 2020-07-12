@@ -67,8 +67,8 @@ namespace CapaAccesoDatos
 
             return response;
         }
-
-
+        
+       
         public List<Reserva> Listar(int rut)
         {
             SqlConnection conexion = Conexion.getInstance().ConexionBD();
@@ -95,13 +95,7 @@ namespace CapaAccesoDatos
                     Reserva reserva = new Reserva();
                     //DATOS RESERVA
                     reserva.Numero_Reserva = Convert.ToInt32(dr["n_reserva"].ToString());
-
                     reserva.Fecha = Convert.ToDateTime(dr["fecha"].ToString());
-                    
-
-                    reserva.BloqueHora.Id_Horario = Convert.ToInt32(dr["bloque_hora_id_horario"].ToString());
-                    //DATOS CLIENTE
-                    reserva.Cliente.Rut = Convert.ToInt32(dr["ficha_cliente_rut_cliente"].ToString());
                     //DATOS BLOQUE
                     reserva.BloqueHora.Hora_Inicio = TimeSpan.Parse(dr["hora_inicio"].ToString());
                     reserva.BloqueHora.Hora_Final = TimeSpan.Parse(dr["hora_final"].ToString());
@@ -120,8 +114,9 @@ namespace CapaAccesoDatos
 
             return Lista;
         }
-
         
+
+        /*
         public bool Eliminar(int rut)
         {
             SqlConnection conexion = null;
@@ -152,8 +147,7 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
-        
-        
-        
+        */
     }
+    
 }
