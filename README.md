@@ -18,7 +18,7 @@ Esta parte del proyecto serviexpress está orientado a los clientes online del s
 
    3. Siguiendo el mismo procedimiento del paso anterior, ejecute el siguiente [**Script**](instruccionesREADME/script_datos.sql) para poblarlas
 
-3. Con [SQLServer] listo, tiene que instalar Visual Studio 2019.
+3. Con **SQLServer** listo, tiene que instalar Visual Studio 2019.
    1. Una vez instalado, abralo, y seleccione la opción [**Open a project or solution**](instruccionesREADME/startupVS.png)
 
 
