@@ -104,45 +104,6 @@ namespace CapaAccesoDatos
             return response;
         }
 
-        public bool BuscarCliente(int rut)
-        {
-            SqlConnection con = null;
-            SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            Cliente cliente = new Cliente();
-            var response = false;
-
-            try
-            {
-                con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spBuscarCliente", con);
-                cmd.Parameters.AddWithValue("@prmRut", rut);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                con.Open();
-
-                dr = cmd.ExecuteReader();
-
-                if (dr.Read())
-                {
-                    cliente.Rut = Convert.ToInt32(dr["rut_cliente"].ToString());
-                }
-                
-                var filas = cmd.ExecuteNonQuery();
-                if (filas > 0) response = true;
-            }
-            catch (Exception e)
-            {
-                response = false;
-                throw e;
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return response;
-        }
         
         
     }

@@ -15,13 +15,18 @@ using CapaAccesoDatos;
 using CapaEntidades;
 using CapaLogicaNegocio;
 
+
 namespace CapaPresentacion
 {
     public partial class ReservarHora : Page
     {
         private string mensaje = "";
-        private string rut;
-        private string verificador;
+        
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ToString());
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,31 +38,12 @@ namespace CapaPresentacion
                 lblMensaje.Text = mensaje;
             }
         }
-        /*
-        private bool BuscarCliente()
-        {
-            int rut = Convert.ToInt32(txtRut.Text);   
-            string connectionstring = "Data Source=(local);Initial Catalog=SERVIEXPRESS;Integrated Security=True";
-            var encontrado = false;
-            using(SqlConnection conn = new SqlConnection(connectionstring))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT rut_cliente from ficha_cliente WHERE rut_cliente = " + rut + ";", conn);
-                int result = (int)cmd.ExecuteScalar();
-                if (result > 0)
-                {
-                    encontrado = true;
-                }
-                conn.Close();
-            }
-
-            return encontrado;
-        }
-        
-    */
        
        public string Rut_Recortado()
        {
+          string rut;
+           string verificador;
+       
            rut = txtRut.Text;
            verificador = rut.Remove(0,rut.Length - 1);
            rut = rut.Remove(rut.Length - 1);
@@ -74,11 +60,9 @@ namespace CapaPresentacion
            return resultado;
        }
        
-       string cs = ConfigurationManager.ConnectionStrings["SERVIEXPRESSConnectionString"].ConnectionString;
+       string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-       //SqlConnection conexion = Conexion.getInstance().ConexionBD();
        
-       //Method for DataBinding  
        protected void ListarReservas()
        {
            int rut = 0;
@@ -106,10 +90,10 @@ namespace CapaPresentacion
                {  
                    gridReservas.DataSource = dt;  
                    gridReservas.DataBind();  
-               } 
+               }
+
                
-           }
-           
+           };
        }   
        /*
         private void LlenarGridViewReservas()
@@ -154,13 +138,6 @@ namespace CapaPresentacion
 
             return objReserva;
         }
-        /*
-        [WebMethod]
-        public bool BuscarCliente(int rut)
-        {
-            return ClienteLN.getInstance().BuscarCliente(rut);
-        }
-        */
         private void LlenarEmpleados()
         {
             var Lista = EmpleadoLN.getInstance().ListarEmpleados();
@@ -174,8 +151,7 @@ namespace CapaPresentacion
 
         private void LlenarServicios()
         {
-            var Lista = ServicioLN.getInstance().ListarServicios();
-
+            var Lista = ServicioLN.getInstance().ListarServicios();    
             ddlServicio.DataSource = Lista;
             ddlServicio.DataValueField = "Codigo_Servicio";
             ddlServicio.DataTextField = "Nombre";
@@ -209,11 +185,11 @@ namespace CapaPresentacion
             var response = ReservaLN.getInstance().AgendarReserva(objReserva);
             if (response)
             {
-                /*
-                detallesReserva.InnerText = "Fecha: " + GetEntity().Fecha.Date + "\nRut empleado: " +
-                                            GetEntity().Rut_Empleado + "Servicio: " + GetEntity().Codigo_Servicio +
-                                            "Horario: " + GetEntity().Hora_Inicio;
-                                            */
+                detallesReserva.InnerText = "Fecha: " + RecuperarDatos().Fecha.ToString("d") + 
+                                            "\nRut empleado: " + RecuperarDatos().Empleado.Rut + 
+                                            "\nServicio: " + RecuperarDatos().Servicio.Codigo_Servicio +
+                                            "\nHorario: " + RecuperarDatos().BloqueHora.Hora_Inicio;
+                                            
                 panelMensajes.CssClass = "";
                 panelMensajes.CssClass = "alert-success alert text-center";
                 mensaje = "Reserva agendada correctamente";
@@ -228,12 +204,12 @@ namespace CapaPresentacion
             }
         }
 
-        private void CancelarReserva()
+        public void CancelarReserva()
         {
+            
             var conexion = Conexion.getInstance().ConexionBD();
             SqlCommand cmd = null;
             SqlDataReader dr = null;
-            List<Reserva> Lista = null;
             
             if (txtRut.Text.Equals(string.Empty) || txtReserva.Text.Equals(string.Empty))
             {
@@ -248,8 +224,9 @@ namespace CapaPresentacion
 
                 try
                 {
-                    cmd = new SqlCommand("[spCancelarReserva]", conexion);
+                    cmd = new SqlCommand("spCancelarReserva", conexion);
                     cmd.Parameters.AddWithValue("@prmRut", rut);
+                    cmd.Parameters.AddWithValue("@prmReserva", reserva);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conexion.Open();
@@ -268,13 +245,11 @@ namespace CapaPresentacion
                     conexion.Close();
                 }
             }
+            
+            
+            
         }
 
-        private void ReservaExitosa()
-        {
-        }
-
-       
         protected void btnListarReserva_Click(object sender, EventArgs e)
         {
             ListarReservas();
@@ -290,6 +265,7 @@ namespace CapaPresentacion
         {
             CancelarReserva();
         }
+        
 
         //busca si se ha cambiado la seleccion de empleado y actualiza ddlServicios
         protected void SeleccionServicio(object sender, EventArgs e)
@@ -302,6 +278,9 @@ namespace CapaPresentacion
         {
             LlenarBloque();
         }
+
+
+        
 
         
     }

@@ -115,39 +115,6 @@ namespace CapaAccesoDatos
             return Lista;
         }
         
-
-        /*
-        public bool Eliminar(int rut)
-        {
-            SqlConnection conexion = null;
-            SqlCommand cmd = null;
-            bool ok = false;
-            try
-            {
-                conexion = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spEliminarReserva", conexion);
-                cmd.Parameters.AddWithValue("@prmRut", rut);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                conexion.Open();
-
-                cmd.ExecuteNonQuery();
-
-                ok = true;
-
-            }
-            catch (Exception ex)
-            {
-                ok = false;
-                throw ex;
-            }
-            finally
-            {
-                conexion.Close();
-            }
-            return ok;
-        }
-        */
     }
     
 }

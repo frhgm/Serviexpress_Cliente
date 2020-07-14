@@ -1,2 +1,0 @@
-﻿﻿
-mensajeLogin.innerHTML = "Login incorrecto";

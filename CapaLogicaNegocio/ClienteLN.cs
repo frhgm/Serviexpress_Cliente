@@ -38,17 +38,6 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public bool BuscarCliente(int rut)
-        {
-            try
-            {
-                return ClienteDAO.getInstance().BuscarCliente(rut);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
 
         public bool RegistrarCliente(Cliente objCliente)
         {
